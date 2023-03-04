@@ -2,4 +2,6 @@
 
 Earth boardgame group project
 
-# Heading
+# This branch
+
+Will create base classes for cards.
