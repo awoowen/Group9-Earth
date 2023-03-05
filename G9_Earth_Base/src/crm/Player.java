@@ -22,7 +22,7 @@ public class Player {
 	public Player(CardAmericanSycamore card) {
 		hand = new ArrayList<Card>();
 		DrawCards();
-    soilToken = 0;
+    		soilToken = 0;
 		leafToken = 5;
 		ecosystemCard = null;
 		islandCard = null;
