@@ -1,7 +1,6 @@
 package crm;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Player {
 
@@ -20,7 +19,7 @@ public class Player {
 		playerTableu = new Tableu();
 		hand = new ArrayList<Card>();
 		DrawCard(gameDeck);
-    	//soilToken = 0;
+    	soil = 0;
 		//leafToken = 5;
 		//ecosystemCard = null;
 		//islandCard = null;
@@ -32,7 +31,7 @@ public class Player {
 
 	public Player() {
 		hand = new ArrayList<Card>();
-    	//soilToken = 0;
+    	soil = 0;
 		//leafToken = 5;
 		//ecosystemCard = null;
 		//islandCard = null;
@@ -54,30 +53,9 @@ public class Player {
 		}
 	}
 
-	public void playCard() {
-		Card tempCard;
-		int chooseCard = -1;
-		Scanner input = new Scanner(System.in);
-
-		if (hand.size() > 0){
-			System.out.println("Choose a card to play from your hand");
-			System.out.println("------------------------------------");
-			DisplayHand();
-			System.out.println("------------------------------------");
-			System.out.print("Select Card (1-" + hand.size() + "): ");
-			chooseCard = input.nextInt() - 1;
-			input.nextLine();
-			tempCard = hand.remove(chooseCard);
-			//System.out.println("chooseCard: " + chooseCard);
-
-			playerTableu.placeCard(tempCard);
-			adjustVP(1);
-		}
-		else{
-			System.out.println("No cards in hand.");
-		}
-		
-		input.close();
+	public void playCard(Card chosenCard, int row, int col) {
+		playerTableu.placeCard(chosenCard, row, col);
+		adjustVP(1);
 	}
 	
 	/*public void addSoilTokens(int amtSoil) {

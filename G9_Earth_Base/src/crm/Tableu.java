@@ -1,7 +1,5 @@
 package crm;
 
-import java.util.Scanner;
-
 public class Tableu {
 
 	private Card[][] tableu;
@@ -10,24 +8,8 @@ public class Tableu {
 		tableu = new Card[4][4];
 	}
 	
-	public void placeCard(Card chosenCard) {
-		int row = -1;
-		int col = -1;
-		Scanner input = new Scanner(System.in);
-
-		System.out.println("Choose the row and column of the Tableau to place your card");
-
-		System.out.print("Row: ");
-		row = input.nextInt() - 1;
-
-		System.out.print("Column: ");
-		col = input.nextInt() - 1;
-
-		input.nextLine();
-
-		tableu[row][col] = chosenCard;
-
-		input.close();
+	public void placeCard(Card chosenCard, int row, int col) {
+		tableu[row - 1][col - 1] = chosenCard;
 		showTableu();
 	}
 	
