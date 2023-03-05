@@ -20,11 +20,16 @@ public class Player {
 	private final static Scanner stdin = new Scanner(System.in);
 
 	public Player(CardAmericanSycamore card) {
-//		island_board = null;
 		hand = new ArrayList<Card>();
-
 		DrawCards();
-
+    soilToken = 0;
+		leafToken = 5;
+		ecosystemCard = null;
+		islandCard = null;
+		climateCard = null;
+		firstPlayer = false;
+		activePlayer = false;
+		victoryPoints = 0;
 	}
 
 	public void DrawCards() {
@@ -81,7 +86,19 @@ public class Player {
 
 		island_board[row][col] = hand.remove(chooseCard);
 
-		showTableau();
+		showTableau();		
+	}
+	
+	public void addSoilTokens(int amtSoil) {
+		soilToken += amtSoil;
+	}
+	
+	public int getSoilTokens() {
+		return soilToken;
+	}
+	
+	public void adjustVP(int amtVP) {
+		victoryPoints += amtVP;
 	}
 
 	public void showTableau() {
