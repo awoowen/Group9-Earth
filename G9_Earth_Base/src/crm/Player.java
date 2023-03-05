@@ -18,7 +18,26 @@ public class Player {
 	public Player() {
 		island_board = null;
 		hand = new ArrayList<Card>();
-		
+		soilToken = 0;
+		leafToken = 5;
+		ecosystemCard = null;
+		islandCard = null;
+		climateCard = null;
+		firstPlayer = false;
+		activePlayer = false;
+		victoryPoints = 0;
+	}
+	
+	public void addSoilTokens(int amtSoil) {
+		soilToken += amtSoil;
+	}
+	
+	public int getSoilTokens() {
+		return soilToken;
+	}
+	
+	public void adjustVP(int amtVP) {
+		victoryPoints += amtVP;
 	}
 
 }
