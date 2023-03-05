@@ -7,7 +7,7 @@ public class Player {
 
 	private Tableu playerTableu;
 	protected ArrayList<Card> hand;
-	//private int soilToken;
+	private int soil;
 	//private int leafToken;
 	//private Card ecosystemCard;
 	//private Card islandCard;
@@ -114,5 +114,22 @@ public class Player {
 	
 	public void adjustVP(int amtVP) {
 		setVictoryPoints(getVictoryPoints() + amtVP);
+	}
+	
+	public void setSoil() {
+		soil = 1000;
+	}
+	
+	public void adjustSoil(int amtSoil) {
+		if(soil + amtSoil <= 0) {
+			setSoil();
+			soil += amtSoil;
+		} else {
+			soil += amtSoil;
+		}
+	}
+	
+	public int getSoil() {
+		return soil;
 	}
 }
