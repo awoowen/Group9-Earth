@@ -1,6 +1,7 @@
 package crm;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Gameboard {
 
@@ -10,19 +11,27 @@ public class Gameboard {
 	private int canopy;
 	private ArrayList<Card> earthCardDeck;
 	private ArrayList<Card> discardPile;
-	private Player p1, p2, p3, p4, p5;
+	
 	
 	public Gameboard() {
 		setSprout();
 		setSoil();
 		setTrunk();
 		setCanopy();
+		//Setup the Earth Card Deck
+		discardPile = null;
+
 	}
 
 	public static void main(String[] args) {
+		int playerInput;
 		Gameboard thisGame = new Gameboard();
+		System.out.print("How many players? (1-5): ");
+		Scanner input = new Scanner(System.in);
+		playerInput = input.nextInt();
 		
 
+		input.close();
 	}
 
 	public void setSprout() {
@@ -91,5 +100,14 @@ public class Gameboard {
 	
 	public int getCanopy() {
 		return canopy;
+	}
+	
+	public Player newPlayer() {
+		Player temp = new Player();
+		return temp;
+	}
+	
+	public void drawCard(Player activePlayer) {
+		
 	}
 }
