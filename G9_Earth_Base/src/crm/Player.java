@@ -58,14 +58,6 @@ public class Player {
 		adjustVP(1);
 	}
 	
-	/*public void addSoilTokens(int amtSoil) {
-		soilToken += amtSoil;
-	}
-	
-	public int getSoilTokens() {
-		return soilToken;
-	}*/
-	
 	public boolean isFirstPlayer() {
 		return firstPlayer;
 	}
