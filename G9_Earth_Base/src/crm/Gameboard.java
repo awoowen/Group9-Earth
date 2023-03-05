@@ -1,38 +1,38 @@
 package crm;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 public class Gameboard {
 
-	private int sprout;
-	private int soil;
-	private int trunk;
-	private int canopy;
-	private ArrayList<Card> earthCardDeck;
-	private ArrayList<Card> discardPile;
-	
+	private int sprout, soil, trunk, canopy;
+	private EarthDeck gameDeck;
+	private Player p1;
+	//private Player p2, p3, p4, p5;
 	
 	public Gameboard() {
 		setSprout();
 		setSoil();
 		setTrunk();
 		setCanopy();
-		//Setup the Earth Card Deck
-		discardPile = null;
-
+		gameDeck = new EarthDeck();
+		p1 = new Player();
+		//p2 = new Player();
+		//p3 = new Player();
+		//p4 = new Player();
+		//p5 = new Player();
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		int playerInput;
 		Gameboard thisGame = new Gameboard();
+		
 		System.out.print("How many players? (1-5): ");
 		Scanner input = new Scanner(System.in);
-		playerInput = input.nextInt();
+		playerInput = input.nextInt(); //Assume 1 for now
 		
 
 		input.close();
-	}
+	}*/
 
 	public void setSprout() {
 		sprout = 1000;
@@ -105,9 +105,5 @@ public class Gameboard {
 	public Player newPlayer() {
 		Player temp = new Player();
 		return temp;
-	}
-	
-	public void drawCard(Player activePlayer) {
-		
 	}
 }
