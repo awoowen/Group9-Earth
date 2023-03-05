@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class Player {
 
-	private Tableu playerTableu;
+	private Tableau playerTableau;
 	protected ArrayList<Card> hand;
 	private int soil;
-	//private int leafToken;
+	//private int leaf;
 	//private Card ecosystemCard;
 	//private Card islandCard;
 	//private Card climateCard;
@@ -16,11 +16,11 @@ public class Player {
 	private int victoryPoints;
 
 	public Player(EarthDeck gameDeck) {
-		playerTableu = new Tableu();
+		playerTableau = new Tableau();
 		hand = new ArrayList<Card>();
 		DrawCard(gameDeck);
     	soil = 0;
-		//leafToken = 5;
+		//setLeaf();
 		//ecosystemCard = null;
 		//islandCard = null;
 		//climateCard = null;
@@ -32,7 +32,7 @@ public class Player {
 	public Player() {
 		hand = new ArrayList<Card>();
     	soil = 0;
-		//leafToken = 5;
+		//setLeaf();
 		//ecosystemCard = null;
 		//islandCard = null;
 		//climateCard = null;
@@ -54,7 +54,7 @@ public class Player {
 	}
 
 	public void playCard(Card chosenCard, int row, int col) {
-		playerTableu.placeCard(chosenCard, row, col);
+		playerTableau.placeCard(chosenCard, row, col);
 		adjustVP(1);
 	}
 	
@@ -102,4 +102,16 @@ public class Player {
 	public int getSoil() {
 		return soil;
 	}
+
+	/*public int getLeaf() {
+		return leaf;
+	}
+
+	public void useLeaf() {
+		leaf = getLeaf() - 1;
+	}
+	
+	public void setLeaf() {
+		leaf = 4;
+	}*/
 }

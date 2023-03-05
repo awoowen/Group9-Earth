@@ -23,7 +23,22 @@ public class TestDriver {
 
     }
     
-    public void plantingPhase(Player activePlayer) {
+    public void plantingAction(Player activePlayer) {
+    	//plant up to 2 cards, one at a time, into your tableu by paying soil
+    	//draw 4 cards, choose 1 to keep and discard the rest into the discard pile
+    	//Note: the discarded cards are NOT put into the compost pile
+    	//all other players may plant 1 card in their tableau 
+    }
+    
+    public void compostingAction(Player activePlayer) {
+    	
+    }
+    
+    public void wateringAction(Player activePlayer) {
+    	
+    }
+    
+    public void growingAction(Player activePlayer) {
     	
     }
 }
