@@ -2,20 +2,20 @@ package crm;
 
 public class Faunaboard {
 
-	private String fauna1;
-	private String fauna2;
-	private String fauna3;
-	private String fauna4;
-	private String eco1;
-	private String eco2;
-	private int First = 15,
-			Second= 11,
-			Third = 8,
-			Fourth = 6,
-			Fifth = 5;
+	private Card fauna1;
+	private Card fauna2;
+	private Card fauna3;
+	private Card fauna4;
+	private Card eco1;
+	private Card eco2;
+	private int FirstVP = 15,
+			SecondVP = 11,
+			ThirdVP = 8,
+			FourthVP = 6,
+			FifthVP = 5;
 
-	public Faunaboard(String FAUNA1, String FAUNA2, String FAUNA3, String FAUNA4,
-					  String sharedECO1, String sharedECO2)
+	public Faunaboard(Card FAUNA1, Card FAUNA2, Card FAUNA3, Card FAUNA4,
+			Card sharedECO1, Card sharedECO2)
 	{
 		fauna1 = FAUNA1;
 		fauna2 = FAUNA2;
