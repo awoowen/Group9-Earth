@@ -12,7 +12,7 @@ public class EarthDeck {
         earthDeck = new ArrayList<>();
         discardPile = new ArrayList<Card>();
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 1000; i++) {
             earthDeck.add(new CardAmericanSycamore());
         }
     }
