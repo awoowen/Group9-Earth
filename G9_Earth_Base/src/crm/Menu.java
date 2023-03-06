@@ -22,4 +22,22 @@ public class Menu {
     {
 
     }
+
+    //More of the game mechanics here
+    //REMEMBER to change the return types later to match the cards
+
+    public static void pickIsland()
+    {
+        System.out.println("Pick your island card: ");
+    }
+
+    public static void pickClimate()
+    {
+        System.out.println("Pick your climate card: ");
+    }
+
+    public static void pickEcosystem()
+    {
+        System.out.println("Pick your ecosystem card");
+    }
 }
