@@ -6,9 +6,11 @@ import java.util.Collections;
 public class EarthDeck {
 	
     private static ArrayList<CardAmericanSycamore> earthDeck;
+    private ArrayList<Card> discardPile;
 
     public EarthDeck() {
         earthDeck = new ArrayList<>();
+        discardPile = new ArrayList<Card>();
 
         for (int i = 0; i < 20; i++) {
             earthDeck.add(new CardAmericanSycamore());
@@ -37,5 +39,9 @@ public class EarthDeck {
 
     public static void shuffleEarth() {
         Collections.shuffle(earthDeck);
+    }
+    
+    public void discardCard(Card disCard) {
+    	discardPile.add(disCard);
     }
 }
