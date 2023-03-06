@@ -54,4 +54,12 @@ public class ToScreen {
 		System.out.println(tableuResult.toString());
 		System.out.println(cardInfo.toString());
 	}
+	
+	public static void displayHand(Player activePlayer) {
+		int x = 0;
+		for (Card handCards : activePlayer.hand) {
+			x += 1;
+			System.out.println(x + ": " + handCards.getName());
+		}
+	}
 }
