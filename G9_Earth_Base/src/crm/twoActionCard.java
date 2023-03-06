@@ -36,7 +36,7 @@ public abstract class twoActionCard extends Card {
 		temp.append(", " + getType());
 		temp.append(", soil cost: " + getSoilCost());
 		temp.append(", base VP: " + getBasePointValue());
-		temp.append("\nLeft: " + getLeftActionDesc() + "\tRight: " + getRightActionDesc());
+		//temp.append("\nLeft: " + getLeftActionDesc() + "\tRight: " + getRightActionDesc());
 		return temp.toString();
 	}
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Player {
 
-	private Tableau playerTableau;
+	private Tableu playerTableau;
 	protected ArrayList<Card> hand;
 	private int soil;
 	//private int leaf;
@@ -16,7 +16,7 @@ public class Player {
 	private int victoryPoints;
 
 	public Player(EarthDeck gameDeck) {
-		playerTableau = new Tableau();
+		playerTableau = new Tableu();
 		hand = new ArrayList<Card>();
 		DrawCard(gameDeck);
     	soil = 0;
