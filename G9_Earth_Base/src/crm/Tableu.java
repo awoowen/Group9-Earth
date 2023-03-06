@@ -1,15 +1,15 @@
 package crm;
 
-public class Tableau {
+public class Tableu {
 
-	private Card[][] tableau;
+	private Card[][] tableu;
 	private int numCards;
 	
-	public Tableau() {
-		tableau = new Card[4][4];		// Initialize tableau to empty card spaces
-		for (int i = 0; i < tableau.length; i++) {
-			for (int j = 0; j < tableau[i].length; j++) {
-				tableau[i][j] = new CardEmptySpace();
+	public Tableu() {
+		tableu = new Card[4][4];		// Initialize tableu to empty card spaces
+		for (int i = 0; i < tableu.length; i++) {
+			for (int j = 0; j < tableu[i].length; j++) {
+				tableu[i][j] = new CardEmptySpace();
 			}
 		}
 		numCards = 0;
@@ -19,8 +19,8 @@ public class Tableau {
 		if(row < 1 || row > 4 || col < 1 || col > 4) {
 			return false;
 		}
-		if(tableau[row - 1][col - 1] == null) {
-			tableau[row - 1][col - 1] = chosenCard;
+		if(tableu[row - 1][col - 1] == null) {
+			tableu[row - 1][col - 1] = chosenCard;
 			numCards++;
 			return true;
 		} else {
@@ -29,7 +29,7 @@ public class Tableau {
 	}
 	
 	public Card[][] getTableu() {
-		return tableau;
+		return tableu;
 	}
 
 	public boolean isEmpty() {
