@@ -19,7 +19,7 @@ public class Tableu {
 		if(row < 1 || row > 4 || col < 1 || col > 4) {
 			return false;
 		}
-		if(tableu[row - 1][col - 1] == null) {
+		if(tableu[row - 1][col - 1].getType() == "NOTYPE") {
 			tableu[row - 1][col - 1] = chosenCard;
 			numCards++;
 			return true;
