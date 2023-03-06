@@ -5,6 +5,10 @@ package crm;
 public class TestDriver {
 
     public static void main(String[] args){
+        Menu menu = new Menu();
+        menu.beginScreen();
+
+
     	//Scanner inputScanner = new Scanner(System.in);
         EarthDeck earthDeck = new EarthDeck();
         System.out.println("Earth Deck: " + earthDeck);

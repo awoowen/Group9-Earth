@@ -15,7 +15,7 @@ public class Menu {
             //Can still produce an error if user inputs a string or char
             playerCount = scn.nextInt();
             scn.nextLine();
-        } while (playerCount < 1 && playerCount > 5);
+        } while (playerCount < 1 || playerCount > 5);
     }
 
     public static void endGame()
