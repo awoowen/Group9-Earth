@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Player {
 
-	private Tableu playerTableu;
+	protected Tableu playerTableu;
 	protected ArrayList<Card> hand;
 	//private ArrayList<Card> compost;
 	private int soil;
@@ -54,8 +54,10 @@ public class Player {
 			adjustVP(chosenCard.getBasePointValue());
 			soil -= chosenCard.getSoilCost();
 			hand.remove(chosenCard);
+			//System.out.println("Successfully placed card.");
 			return true;
 		} else {
+			//System.out.println("Failed to place card.");
 			return false;
 		}
 	}

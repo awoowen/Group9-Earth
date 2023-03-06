@@ -20,14 +20,19 @@ public class TestDriver {
 
         while (p1.isActivePlayer()) {
         	plantingAction(p1, earthDeck, input);
-            p1.playCard(p1.hand.remove(0), 1, 1);
+            //p1.playCard(p1.hand.remove(0), 1, 1);
             if(p1.hand.size() == 0) {
                 System.out.println("No cards in hand.");
                 break;
             }
+            if(p1.playerTableu.isFull() == true) {
+            	Menu.endScreen();
+            	return;
+            }
         }
 
 		Menu.endScreen();
+		return;
     }
     
     public static void plantingAction(Player activePlayer, EarthDeck gameDeck,/* Player[] otherPlayers,*/ Scanner input) {
@@ -37,11 +42,22 @@ public class TestDriver {
     	int counter;
     	Card temp;
     	Card[] tempHand = new Card[4];
+    	boolean errorFlag = false;
     	
     	//Plant up to 2 cards, one at a time, into your tableau by paying soil
     	//Active player chooses whether to plant 0-2 cards.
-    	System.out.print("Choose the number of cards to plant (0-2): ");
-    	numPlant = input.nextInt();
+    	do { 
+    		System.out.print("Choose the number of cards to plant (0-2): ");
+    		numPlant = input.nextInt();
+    		if(numPlant > activePlayer.hand.size()) {
+    			System.out.println("Not enough cards to plant.");
+    			System.out.println("You have " + activePlayer.hand.size() + " cards in your hand.");
+    			errorFlag = true;
+    		} else {
+    			errorFlag = false;
+    		}
+    	} while(errorFlag == true);
+    	
     	if(numPlant == 2) {
     		System.out.println("Choose the card to plant:");
     		ToScreen.displayHand(activePlayer);
@@ -53,13 +69,16 @@ public class TestDriver {
     		System.out.print("Column (1-4): ");
     		col = input.nextInt();
     		
+    		//ToScreen.displayTableu(activePlayer.playerTableu);
+    		//System.out.println("test1");
     		while(activePlayer.playCard(temp, row, col) == false) {
     			System.out.println("Choose the row and column you want to plant in (4x4 grid):");
         		System.out.print("Row (1-4): ");
         		row = input.nextInt();
         		System.out.print("Column (1-4): ");
         		col = input.nextInt();
-    			activePlayer.playCard(temp, row, col);
+        		//System.out.println("test2");
+        		ToScreen.displayTableu(activePlayer.playerTableu);
     		}
     		
     		System.out.println("Choose the card to plant:");
@@ -72,14 +91,16 @@ public class TestDriver {
     		System.out.print("Column (1-4): ");
     		col = input.nextInt();
     		
+    		//ToScreen.displayTableu(activePlayer.playerTableu);
+    		//System.out.println("test3");
     		while(activePlayer.playCard(temp, row, col) == false) {
     			System.out.println("Choose the row and column you want to plant in (4x4 grid):");
         		System.out.print("Row (1-4): ");
         		row = input.nextInt();
         		System.out.print("Column (1-4): ");
         		col = input.nextInt();
-        		
-        		activePlayer.playCard(temp, row, col);
+        		//System.out.println("test4");
+        		ToScreen.displayTableu(activePlayer.playerTableu);
     		}
     	} else if(numPlant == 1) {
     		System.out.println("Choose the card to plant:");
@@ -92,15 +113,18 @@ public class TestDriver {
     		System.out.print("Column (1-4): ");
     		col = input.nextInt();
     		
+    		//ToScreen.displayTableu(activePlayer.playerTableu);
+    		//System.out.println("test5");
     		while(activePlayer.playCard(temp, row, col) == false) {
     			System.out.println("Choose the row and column you want to plant in (4x4 grid):");
         		System.out.print("Row (1-4): ");
         		row = input.nextInt();
         		System.out.print("Column (1-4): ");
         		col = input.nextInt();
-        		
-    			activePlayer.playCard(temp, row, col);
+        		//System.out.println("test6");
+    			ToScreen.displayTableu(activePlayer.playerTableu);
     		}
+    		//ToScreen.displayTableu(activePlayer.playerTableu);
     	}
     	
     	//Draw 4 cards, choose 1 to keep and discard the rest into the discard pile
@@ -119,9 +143,12 @@ public class TestDriver {
     		if(i != (counter - 1)) {
     	    	//Note: the discarded cards are NOT put into the compost pile
     			gameDeck.discardCard(tempHand[i]);
+    			//System.out.println("Discarded card successfully.");
     		} else {
     			activePlayer.hand.add(temp);
     			gameDeck.discardCard(tempHand[i]);
+        		ToScreen.displayHand(activePlayer);
+        		//System.out.println("Added card to hand successfully.");
     		}
     	}
     	
