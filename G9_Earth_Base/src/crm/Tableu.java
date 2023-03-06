@@ -27,10 +27,6 @@ public class Tableu {
 			return false;
 		}
 	}
-	
-	public Card[][] getTableu() {
-		return tableu;
-	}
 
 	public boolean isEmpty() {
 		return numCards == 0;
@@ -38,5 +34,9 @@ public class Tableu {
 	
 	public boolean isFull() {
 		return numCards == 16;
+	}
+	
+	public Card[][] getTableu() {
+		return tableu;
 	}
 }
