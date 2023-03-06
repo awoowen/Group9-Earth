@@ -19,21 +19,20 @@ public class Menu {
         System.out.println("Austin Ly     : Falenheart");
         System.out.println("Derek Trinh   : tcderk");
         System.out.println("Joseph Kim    : JoeyAlphaBBQ");
-        System.out.println("=======================================================================");
+        System.out.println("=======================================================================\n");
 
 
-
-
-        do {
+        //We use this when we start implementing more players
+/*        do {
             System.out.println("How many players are playing?");
             //Only 1-5 people can play
             //Can still produce an error if user inputs a string or char
             playerCount = scn.nextInt();
             scn.nextLine();
-        } while (playerCount < 1 || playerCount > 5);
+        } while (playerCount < 1 || playerCount > 5);*/
     }
 
-    public static void endGame()
+    public static void endScreen()
     {
         System.out.println("Due to the game not being finished yet, nothing will actually be calculated.");
         System.out.println("Calculating points....");

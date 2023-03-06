@@ -6,6 +6,8 @@ public class TestDriver {
 	public static Player[] playerList = new Player[5];
 	
     public static void main(String[] args){
+		Menu.beginScreen();
+
     	Scanner input = new Scanner(System.in);
         EarthDeck earthDeck = new EarthDeck();
         System.out.println("Earth Deck: " + earthDeck);
@@ -24,6 +26,8 @@ public class TestDriver {
                 break;
             }
         }
+
+		Menu.endScreen();
     }
     
     public static void plantingAction(Player activePlayer, EarthDeck gameDeck,/* Player[] otherPlayers,*/ Scanner input) {
