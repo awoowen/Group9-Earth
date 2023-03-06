@@ -11,8 +11,10 @@ public class TestDriver {
         EarthDeck.shuffleEarth();
 
         Player p1 = new Player(earthDeck);
+        p1.setFirstPlayer(true);
+        p1.setActivePlayer(true);
 
-        while (true) {
+        while (p1.isActivePlayer()) {
             p1.playCard(p1.hand.remove(0), 1, 1);
             if(p1.hand.size() == 0) {
                 System.out.println("No cards in hand.");
@@ -31,8 +33,26 @@ public class TestDriver {
     	//players do not need to have planted a card to draw a card
     	//finally, all players activate the green abilities on their cards
     	//you will score the base VP value of planted cards at the end of the game
-    	
-    	
+    	int numPlant = -1;
+    	int row = -1;
+    	int col = -1;
+    	Card temp = activePlayer.hand.get(0); //Use this to ask players to choose cards
+    	//Active player chooses whether to plant 0-2 cards.
+    	if(numPlant == 2) {
+    		//Ask to choose 1st card to plant
+    		//Ask to choose row and col
+    		activePlayer.playCard(temp, row, col);
+    		while(!activePlayer.playCard(temp, row, col)) {
+    			activePlayer.playCard(temp, row, col);
+    		}
+    		//Ask to choose 2nd card to plant
+    		//Ask to choose row and col
+    		activePlayer.playCard(temp, row, col);
+    		while(!activePlayer.playCard(temp, row, col)) {
+    			//Ask to choose new row and col
+        		activePlayer.playCard(temp, row, col);
+    		}
+    	}
     }
     
     public void compostingAction(Player activePlayer) {
