@@ -6,6 +6,7 @@ public class Player {
 
 	private Tableau playerTableau;
 	protected ArrayList<Card> hand;
+	private ArrayList<Card> compost;
 	private int soil;
 	//private int leaf;
 	//private Card ecosystemCard;
@@ -18,6 +19,7 @@ public class Player {
 	public Player(EarthDeck gameDeck) {
 		playerTableau = new Tableau();
 		hand = new ArrayList<Card>();
+		compost = new ArrayList<Card>();
 		DrawCard(gameDeck);
     	setSoil(0);
 		//setLeaf();
@@ -30,7 +32,9 @@ public class Player {
 	}
 
 	public Player() {
+		playerTableau = new Tableau();
 		hand = new ArrayList<Card>();
+		compost = new ArrayList<Card>();
 		setSoil(0);
 		//setLeaf();
 		//ecosystemCard = null;

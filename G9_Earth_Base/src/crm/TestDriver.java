@@ -3,7 +3,8 @@ package crm;
 //import java.util.Scanner;
 
 public class TestDriver {
-
+	public static Player[] playerList = new Player[5];
+	
     public static void main(String[] args){
     	//Scanner inputScanner = new Scanner(System.in);
         EarthDeck earthDeck = new EarthDeck();
@@ -11,6 +12,7 @@ public class TestDriver {
         EarthDeck.shuffleEarth();
 
         Player p1 = new Player(earthDeck);
+        playerList[0] = p1;
         p1.setFirstPlayer(true);
         p1.setActivePlayer(true);
 
@@ -25,24 +27,26 @@ public class TestDriver {
 
     }
     
-    public void plantingAction(Player activePlayer) {
+    public void plantingAction(Player activePlayer, EarthDeck gameDeck, Player[] otherPlayers) {
     	//plant up to 2 cards, one at a time, into your tableau by paying soil
     	//draw 4 cards, choose 1 to keep and discard the rest into the discard pile
     	//Note: the discarded cards are NOT put into the compost pile
     	//all other players may plant 1 card in their tableau by paying soil and draw 1 card
     	//players do not need to have planted a card to draw a card
     	//finally, all players activate the green abilities on their cards
-    	//you will score the base VP value of planted cards at the end of the game
+
     	int numPlant = -1;
     	int row = -1;
     	int col = -1;
     	Card temp = activePlayer.hand.get(0); //Use this to ask players to choose cards
+    	
     	//Active player chooses whether to plant 0-2 cards.
     	if(numPlant == 2) {
     		//Ask to choose 1st card to plant
     		//Ask to choose row and col
     		activePlayer.playCard(temp, row, col);
     		while(!activePlayer.playCard(temp, row, col)) {
+    			//Ask to choose new row and col
     			activePlayer.playCard(temp, row, col);
     		}
     		//Ask to choose 2nd card to plant
@@ -52,7 +56,27 @@ public class TestDriver {
     			//Ask to choose new row and col
         		activePlayer.playCard(temp, row, col);
     		}
+    	} else if(numPlant == 1) {
+    		//Ask to choose card to plant
+    		//Ask to choose row and col
+    		activePlayer.playCard(temp, row, col);
+    		while(!activePlayer.playCard(temp, row, col)) {
+    			//Ask to choose new row and col
+    			activePlayer.playCard(temp, row, col);
+    		}
     	}
+    	for(int i = 0; i < 4; i++) {
+    		activePlayer.DrawCard(gameDeck);
+    	}
+    	//Ask player to choose card to keep
+    	//temp = chosen card;
+    	for(int i = 0; i < 4; i++) {
+    		if(activePlayer.hand.get(activePlayer.hand.size() - 1) != temp) {
+    			gameDeck.discardCard(activePlayer.hand.remove(activePlayer.hand.size() - 1));
+    		}
+    	}
+    	
+    	
     }
     
     public void compostingAction(Player activePlayer) {
