@@ -50,7 +50,7 @@ public class Player {
 	}
 
 	public boolean playCard(Card chosenCard, int row, int col) {
-		if(playerTableu.placeCard(chosenCard, row, col)) {
+		if(playerTableu.placeCard(chosenCard, row, col) == true) {
 			adjustVP(chosenCard.getBasePointValue());
 			soil -= chosenCard.getSoilCost();
 			hand.remove(chosenCard);

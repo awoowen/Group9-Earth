@@ -45,7 +45,6 @@ public class TestDriver {
     	if(numPlant == 2) {
     		System.out.println("Choose the card to plant:");
     		ToScreen.displayHand(activePlayer);
-    		System.out.println();
     		temp = activePlayer.hand.get(input.nextInt() - 1);
     		
     		System.out.println("Choose the row and column you want to plant in (4x4 grid):");
@@ -54,15 +53,17 @@ public class TestDriver {
     		System.out.print("Column (1-4): ");
     		col = input.nextInt();
     		
-    		activePlayer.playCard(temp, row, col);
-    		while(!activePlayer.playCard(temp, row, col)) {
-    			//Ask to choose new row and col
+    		while(activePlayer.playCard(temp, row, col) == false) {
+    			System.out.println("Choose the row and column you want to plant in (4x4 grid):");
+        		System.out.print("Row (1-4): ");
+        		row = input.nextInt();
+        		System.out.print("Column (1-4): ");
+        		col = input.nextInt();
     			activePlayer.playCard(temp, row, col);
     		}
     		
     		System.out.println("Choose the card to plant:");
     		ToScreen.displayHand(activePlayer);
-    		System.out.println();
     		temp = activePlayer.hand.get(input.nextInt() - 1);
     		
     		System.out.println("Choose the row and column you want to plant in (4x4 grid):");
@@ -71,8 +72,7 @@ public class TestDriver {
     		System.out.print("Column (1-4): ");
     		col = input.nextInt();
     		
-    		activePlayer.playCard(temp, row, col);
-    		while(!activePlayer.playCard(temp, row, col)) {
+    		while(activePlayer.playCard(temp, row, col) == false) {
     			System.out.println("Choose the row and column you want to plant in (4x4 grid):");
         		System.out.print("Row (1-4): ");
         		row = input.nextInt();
@@ -84,7 +84,6 @@ public class TestDriver {
     	} else if(numPlant == 1) {
     		System.out.println("Choose the card to plant:");
     		ToScreen.displayHand(activePlayer);
-    		System.out.println();
     		temp = activePlayer.hand.get(input.nextInt() - 1);
     		
     		System.out.println("Choose the row and column you want to plant in (4x4 grid):");
@@ -93,8 +92,7 @@ public class TestDriver {
     		System.out.print("Column (1-4): ");
     		col = input.nextInt();
     		
-    		activePlayer.playCard(temp, row, col);
-    		while(!activePlayer.playCard(temp, row, col)) {
+    		while(activePlayer.playCard(temp, row, col) == false) {
     			System.out.println("Choose the row and column you want to plant in (4x4 grid):");
         		System.out.print("Row (1-4): ");
         		row = input.nextInt();
@@ -112,16 +110,18 @@ public class TestDriver {
     	}
     	
     	System.out.println("Choose a card to keep and discard the rest:");
-    	counter = 0;
 		for(int j = 0; j < 4; j++) {
-			counter += 1;
-			System.out.println(counter + ": " + tempHand[counter - 1].getName());
+			System.out.println((j + 1) + ": " + tempHand[j].getName());
 		}
-    	temp = tempHand[input.nextInt() - 1];
+		counter = input.nextInt();
+    	temp = tempHand[counter - 1];
     	for(int i = 0; i < 4; i++) {
-    		if(activePlayer.hand.get(activePlayer.hand.size() - 1) != temp) {
+    		if(i != (counter - 1)) {
     	    	//Note: the discarded cards are NOT put into the compost pile
-    			gameDeck.discardCard(activePlayer.hand.remove(activePlayer.hand.size() - 1));
+    			gameDeck.discardCard(tempHand[i]);
+    		} else {
+    			activePlayer.hand.add(temp);
+    			gameDeck.discardCard(tempHand[i]);
     		}
     	}
     	
