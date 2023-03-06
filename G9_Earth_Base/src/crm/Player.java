@@ -1,41 +1,48 @@
 package crm;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Player {
 
-	private Card[][] island_board = new Card[4][4];
+	private Tableu playerTableau;
 	protected ArrayList<Card> hand;
-	private int soilToken;
-	private int leafToken;
-	private Card ecosystemCard;
-	private Card islandCard;
-	private Card climateCard;
+	private int soil;
+	//private int leaf;
+	//private Card ecosystemCard;
+	//private Card islandCard;
+	//private Card climateCard;
 	private boolean firstPlayer;
 	private boolean activePlayer;
 	private int victoryPoints;
 
-	private int chooseCard;
-	private final static Scanner stdin = new Scanner(System.in);
-
-	public Player(CardAmericanSycamore card) {
+	public Player(EarthDeck gameDeck) {
+		playerTableau = new Tableu();
 		hand = new ArrayList<Card>();
-		DrawCards();
-    		soilToken = 0;
-		leafToken = 5;
-		ecosystemCard = null;
-		islandCard = null;
-		climateCard = null;
-		firstPlayer = false;
-		activePlayer = false;
-		victoryPoints = 0;
+		DrawCard(gameDeck);
+    	soil = 0;
+		//setLeaf();
+		//ecosystemCard = null;
+		//islandCard = null;
+		//climateCard = null;
+		setFirstPlayer(false);
+		setActivePlayer(false);
+		setVictoryPoints(0);
 	}
 
-	public void DrawCards() {
-		for(int i = 0; i < 16; i++) {
-			hand.add(EarthDeck.dealTopEarthCard());
-		}
+	public Player() {
+		hand = new ArrayList<Card>();
+    	soil = 0;
+		//setLeaf();
+		//ecosystemCard = null;
+		//islandCard = null;
+		//climateCard = null;
+		setFirstPlayer(false);
+		setActivePlayer(false);
+		setVictoryPoints(0);
+	}
+	
+	public void DrawCard(EarthDeck gameDeck) {
+		hand.add(gameDeck.dealTopEarthCard());
 	}
 
 	public void DisplayHand() {
@@ -46,70 +53,65 @@ public class Player {
 		}
 	}
 
-	public Object playCard() {
-
-		chooseCard = -1;
-
-		if (hand.size() > 0){
-			System.out.println("Choose a card to play from your hand");
-			System.out.println("------------------------------------");
-			DisplayHand();
-			System.out.println("------------------------------------");
-			System.out.print("Select Card (1-" + hand.size() + "): ");
-			chooseCard = stdin.nextInt() - 1;
-			stdin.nextLine();
-//			System.out.println("chooseCard: " + chooseCard);
-
-			placeCardOnTableau();
-		}
-		else{
-			System.out.println("No cards in hand.");
-		}
-		return null;
-	}
-
-	public void placeCardOnTableau() {
-
-		int row = -1;
-		int col = -1;
-
-		System.out.println("Choose the row and column of the Tableau to place your card");
-
-		System.out.print("Row: ");
-		row = stdin.nextInt() - 1;
-
-		System.out.print("Column: ");
-		col = stdin.nextInt() - 1;
-
-		stdin.nextLine();
-//		System.out.println("Row = " + row + "\nColumn = " + col);
-
-		island_board[row][col] = hand.remove(chooseCard);
-
-		showTableau();		
+	public void playCard(Card chosenCard, int row, int col) {
+		playerTableau.placeCard(chosenCard, row, col);
+		adjustVP(1);
 	}
 	
-	public void addSoilTokens(int amtSoil) {
-		soilToken += amtSoil;
+	public boolean isFirstPlayer() {
+		return firstPlayer;
 	}
-	
-	public int getSoilTokens() {
-		return soilToken;
+
+	public void setFirstPlayer(boolean isFirst) {
+		firstPlayer = isFirst;
+	}
+
+	public boolean isActivePlayer() {
+		return activePlayer;
+	}
+
+	public void setActivePlayer(boolean isActive) {
+		activePlayer = isActive;
+	}
+
+	public int getVictoryPoints() {
+		return victoryPoints;
+	}
+
+	public void setVictoryPoints(int vp) {
+		victoryPoints = vp;
 	}
 	
 	public void adjustVP(int amtVP) {
-		victoryPoints += amtVP;
+		setVictoryPoints(getVictoryPoints() + amtVP);
 	}
-
-	public void showTableau() {
-//		System.out.println(Arrays.deepToString(island_board));
-
-		System.out.println("=Tableau=");
-		for (int a = 0; a < 4; a++) {
-			for (int b = 0; b < 4; b++) {
-				System.out.print(island_board[a][b] + " | ");
-			}
-			System.out.println("\n---------------------------");
+	
+	public void setSoil() {
+		soil = 1000;
+	}
+	
+	public void adjustSoil(int amtSoil) {
+		if(soil + amtSoil <= 0) {
+			setSoil();
+			soil += amtSoil;
+		} else {
+			soil += amtSoil;
 		}
 	}
+	
+	public int getSoil() {
+		return soil;
+	}
+
+	/*public int getLeaf() {
+		return leaf;
+	}
+
+	public void useLeaf() {
+		leaf = getLeaf() - 1;
+	}
+	
+	public void setLeaf() {
+		leaf = 4;
+	}*/
 }

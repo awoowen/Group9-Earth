@@ -7,5 +7,6 @@ public enum CardType {
 	ISLAND,
 	CLIMATE,
 	ECOSYSTEM,
-	FAUNA
+	FAUNA,
+	EMPTYSPACE
 }

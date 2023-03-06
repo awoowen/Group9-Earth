@@ -5,6 +5,8 @@ public abstract class Card {
 	private CardType type;		// Type of card; in rulebook: PDF page 4
 	private int soilCost;		// How much soil it costs to plant this card.
 	private int basePointValue;	// The number of points this card is worth when planted.
+	//private int sprout;			// Flora: Sprouts provide VP and can be converted to soil: PDF page 7
+	//private int growth;			// Flora: Growth encompasses trunks and canopies and provide VP: PDF page 8
 	
 	/*
 	 * Children of Card must define toString
@@ -13,7 +15,12 @@ public abstract class Card {
 	 */ 
 	public abstract String toString();	
 	
-	
+	Card() {
+		name = "";
+		type = CardType.EMPTYSPACE;
+		soilCost = 0;
+		basePointValue = 0;
+	}
 	
 	public void setName(String n) {
 		name = n;
