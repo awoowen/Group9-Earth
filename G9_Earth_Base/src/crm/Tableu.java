@@ -15,6 +15,19 @@ public class Tableu {
 		numCards = 0;
 	}
 	
+	public boolean placeCard(Card chosenCard, int row, int col) {
+		if(row < 1 || row > 4 || col < 1 || col > 4) {
+			return false;
+		}
+		if(tableu[row - 1][col - 1] == null) {
+			tableu[row - 1][col - 1] = chosenCard;
+			numCards++;
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public boolean isEmpty() {
 		return numCards == 0;
 	}
@@ -23,13 +36,7 @@ public class Tableu {
 		return numCards == 16;
 	}
 	
-	public void placeCard(Card chosenCard, int row, int col) {
-		tableu[row - 1][col - 1] = chosenCard;
-		numCards++;
-	}
-	
 	public Card[][] getTableu() {
 		return tableu;
 	}
-
 }
