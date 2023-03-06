@@ -8,7 +8,7 @@ public class CardAmericanSycamore extends twoActionCard {
 		setSoilCost(3);
 		setBasePointValue(1);
 		setLeftActionDesc("");		// Set the text for card's left action
-		setRightActionDesc("");	// Set the text for card's right action
+		setRightActionDesc("");		// Set the text for card's right action
 	}
 
 	
