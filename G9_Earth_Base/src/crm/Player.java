@@ -55,7 +55,7 @@ public class Player {
 
 	public void playCard(Card chosenCard, int row, int col) {
 		playerTableau.placeCard(chosenCard, row, col);
-		adjustVP(1);
+		adjustVP(chosenCard.getBasePointValue());
 	}
 	
 	public boolean isFirstPlayer() {
