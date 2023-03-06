@@ -15,7 +15,12 @@ public abstract class Card {
 	 */ 
 	public abstract String toString();	
 	
-	
+	Card() {
+		name = "";
+		type = CardType.EMPTYSPACE;
+		soilCost = 0;
+		basePointValue = 0;
+	}
 	
 	public void setName(String n) {
 		name = n;

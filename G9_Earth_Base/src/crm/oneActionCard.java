@@ -26,7 +26,7 @@ public abstract class oneActionCard extends Card {
 		temp.append(", " + getType());
 		temp.append(", soil cost: " + getSoilCost());
 		temp.append(", base VP: " + getBasePointValue());
-		temp.append("\n" + getActionDesc());
+		//temp.append("\n" + getActionDesc());
 		return temp.toString();
 	}
 }
