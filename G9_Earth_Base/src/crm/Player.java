@@ -99,6 +99,10 @@ public class Player {
 	public int getSoil() {
 		return soil;
 	}
+	
+	public Tableu getTableu() {
+		return playerTableu;
+	}
 
 	/*public int getLeaf() {
 		return leaf;

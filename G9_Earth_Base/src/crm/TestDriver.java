@@ -38,6 +38,8 @@ public class TestDriver {
     	Card temp;
     	Card[] tempHand = new Card[4];
     	
+    	ToScreen.displayTableu(activePlayer.getTableu());
+    	
     	//Plant up to 2 cards, one at a time, into your tableau by paying soil
     	//Active player chooses whether to plant 0-2 cards.
     	System.out.print("Choose the number of cards to plant (0-2): ");
@@ -103,6 +105,10 @@ public class TestDriver {
     		}
     	}
     	
+    	ToScreen.displayTableu(activePlayer.getTableu());
+    	
+    	ToScreen.displayHand(activePlayer);
+    	
     	//Draw 4 cards, choose 1 to keep and discard the rest into the discard pile
     	//Players do not need to have planted a card to draw a card
     	for(int i = 0; i < 4; i++) {
@@ -124,6 +130,8 @@ public class TestDriver {
     			gameDeck.discardCard(tempHand[i]);
     		}
     	}
+    	
+    	ToScreen.displayHand(activePlayer);
     	
     	//all other players may plant 1 card in their tableau by paying soil and draw 1 card
     	//Temporarily not within the scope of the assignment

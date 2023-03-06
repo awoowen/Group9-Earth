@@ -57,9 +57,10 @@ public class ToScreen {
 	
 	public static void displayHand(Player activePlayer) {
 		int x = 0;
+		System.out.println("-----HAND-----");
 		for (Card handCards : activePlayer.hand) {
 			x += 1;
-			System.out.println(x + ": " + handCards.getName());
+			System.out.println(x + ": " + handCards.toString());
 		}
 	}
 }
