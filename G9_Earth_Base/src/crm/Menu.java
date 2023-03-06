@@ -14,17 +14,12 @@ public class Menu {
 
         //Even though we were told to limit the amount of System.out.println(), the code just wouldn't look nice if I did it another way
         System.out.println("=======================================================================");
-        System.out.println("Earth game prototype.");
+        System.out.println("Earth game prototype. Super early access.");
         System.out.println("Andrew Nguyen : awoowen");
         System.out.println("Austin Ly     : Falenheart");
         System.out.println("Derek Trinh   : tcderk");
         System.out.println("Joseph Kim    : JoeyAlphaBBQ");
         System.out.println("=======================================================================");
-
-
-
-
-
 
 
 
@@ -40,7 +35,9 @@ public class Menu {
 
     public static void endGame()
     {
-
+        System.out.println("Due to the game not being finished yet, nothing will actually be calculated.");
+        System.out.println("Calculating points....");
+        System.out.println("Player wins!");
     }
 
     //More of the game mechanics here
