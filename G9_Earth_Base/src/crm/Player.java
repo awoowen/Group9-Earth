@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Player {
 
-	private Tableu playerTableau;
+	private Tableu playerTableu;
 	protected ArrayList<Card> hand;
-	private ArrayList<Card> compost;
+	//private ArrayList<Card> compost;
 	private int soil;
 	//private int leaf;
 	//private Card ecosystemCard;
@@ -17,11 +17,11 @@ public class Player {
 	private int victoryPoints;
 
 	public Player(EarthDeck gameDeck) {
-		playerTableau = new Tableu();
+		playerTableu = new Tableu();
 		hand = new ArrayList<Card>();
-		compost = new ArrayList<Card>();
-		DrawCard(gameDeck);
-    	setSoil(0);
+		//compost = new ArrayList<Card>();
+		drawCard(gameDeck);
+    	setSoil(1000);
 		//setLeaf();
 		//ecosystemCard = null;
 		//islandCard = null;
@@ -32,10 +32,10 @@ public class Player {
 	}
 
 	public Player() {
-		playerTableau = new Tableu();
+		playerTableu = new Tableu();
 		hand = new ArrayList<Card>();
-		compost = new ArrayList<Card>();
-		setSoil(0);
+		//compost = new ArrayList<Card>();
+		setSoil(1000);
 		//setLeaf();
 		//ecosystemCard = null;
 		//islandCard = null;
@@ -45,20 +45,12 @@ public class Player {
 		setVictoryPoints(0);
 	}
 	
-	public void DrawCard(EarthDeck gameDeck) {
+	public void drawCard(EarthDeck gameDeck) {
 		hand.add(gameDeck.dealTopEarthCard());
 	}
 
-	public void DisplayHand() {
-		int x = 0;
-		for (Card handCards : hand) {
-			x += 1;
-			System.out.println(x + ": " + handCards.getName());
-		}
-	}
-
 	public boolean playCard(Card chosenCard, int row, int col) {
-		if(playerTableau.placeCard(chosenCard, row, col)) {
+		if(playerTableu.placeCard(chosenCard, row, col)) {
 			adjustVP(chosenCard.getBasePointValue());
 			soil -= chosenCard.getSoilCost();
 			hand.remove(chosenCard);
