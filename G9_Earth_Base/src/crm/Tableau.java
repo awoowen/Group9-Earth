@@ -3,9 +3,16 @@ package crm;
 public class Tableau {
 
 	private Card[][] tableau;
+	private int numCards;
 	
 	public Tableau() {
-		tableau = new Card[4][4];
+		tableau = new Card[4][4];		// Initialize tableau to empty card spaces
+		for (int i = 0; i < tableau.length; i++) {
+			for (int j = 0; j < tableau[i].length; j++) {
+				tableau[i][j] = new CardEmptySpace();
+			}
+		}
+		numCards = 0;
 	}
 	
 	public boolean placeCard(Card chosenCard, int row, int col) {
@@ -14,23 +21,22 @@ public class Tableau {
 		}
 		if(tableau[row - 1][col - 1] == null) {
 			tableau[row - 1][col - 1] = chosenCard;
-			showTableau();
+			numCards++;
 			return true;
 		} else {
 			return false;
 		}
 	}
 	
-	public void showTableau() {
-		//System.out.println(Arrays.deepToString(island_board));
-
-		System.out.println("=Tableau=");
-		for (int a = 0; a < 4; a++) {
-			for (int b = 0; b < 4; b++) {
-				System.out.print(tableau[a][b] + " | ");
-			}
-			System.out.println("\n---------------------------");
-		}
+	public Card[][] getTableu() {
+		return tableau;
 	}
 
+	public boolean isEmpty() {
+		return numCards == 0;
+	}
+	
+	public boolean isFull() {
+		return numCards == 16;
+	}
 }
