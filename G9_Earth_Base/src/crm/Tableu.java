@@ -1,5 +1,7 @@
 package crm;
 
+import crm.cards.CardEmptySpace;
+
 public class Tableu {
 
 	private Card[][] tableu;

@@ -1,6 +1,8 @@
-package crm;
+package crm.cards;
 
-public class CardColdFront extends oneActionCard{
+import crm.*;
+
+public class CardColdFront extends oneActionCard {
 
     CardColdFront() {
         setName("Cold Front");

@@ -1,7 +1,6 @@
 package crm.cards;
 
-import crm.CardType;
-import crm.twoActionCard;
+import crm.*;
 
 public class CardAmericanSycamore extends twoActionCard {
 	

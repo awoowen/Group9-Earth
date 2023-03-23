@@ -8,6 +8,7 @@ public class Aridisol extends oneActionCard {
     {
         setName("Aridisol");
         setType(CardType.TERRAIN);
+        setHabitatType(true, true, true, true);
         setSoilCost(0);
         setBasePointValue(2);
         setActionDesc("All Bush cost 2 less soil (Cannot cost less than 0)");

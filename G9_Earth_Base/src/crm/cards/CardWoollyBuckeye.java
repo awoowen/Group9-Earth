@@ -1,7 +1,6 @@
 package crm.cards;
 
-import crm.CardType;
-import crm.oneActionCard;
+import crm.*;
 
 public class CardWoollyBuckeye extends oneActionCard {
 
@@ -9,6 +8,7 @@ public class CardWoollyBuckeye extends oneActionCard {
     {
         setName("Woolly Buckeye");
         setType(CardType.FLORA);
+        setHabitatType(true, false, true, false);
         setSoilCost(5);
         setBasePointValue(2);
         setActionDesc("Gain up to 3 growth on any 8 adjacent Flora");

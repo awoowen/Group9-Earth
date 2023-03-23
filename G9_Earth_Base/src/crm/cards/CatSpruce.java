@@ -6,6 +6,7 @@ public class CatSpruce extends oneActionCard{
     {
         setName("Cat Spruce");
         setType(CardType.FLORA);
+        setHabitatType(false, false, false, true);
         setSoilCost(2);
         setBasePointValue(2);
         setActionDesc("Pay: 1 soil. Gain: 3 growth.");

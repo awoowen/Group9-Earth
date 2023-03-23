@@ -1,4 +1,6 @@
-package crm;
+package crm.cards;
+
+import crm.*;
 
 public class CardFlorenceFennel extends oneActionCard {
 

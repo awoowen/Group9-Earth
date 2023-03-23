@@ -6,6 +6,7 @@ public class ChickenOfTheWoods extends oneActionCard {
     {
         setName("Chicken of the Woods");
         setType(CardType.FLORA);
+        setHabitatType(false, true, true, false);
         setSoilCost(5);
         setBasePointValue(5);
         setActionDesc("Gain: compost 3 card(s) from your hand");

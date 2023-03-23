@@ -7,6 +7,7 @@ public class GiantBeardedFig extends oneActionCard{
     {
         setName("Giant Beared Fig");
         setType(CardType.FLORA);
+        setHabitatType(true, false, false, false);
         setSoilCost(1);
         setBasePointValue(3);
         setActionDesc("You may pay all/some of this Flora's cost with growth instead of soil (1 growth = 1 less soil)");
