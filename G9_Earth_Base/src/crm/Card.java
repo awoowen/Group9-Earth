@@ -7,7 +7,13 @@ public abstract class Card {
 	private int basePointValue;	// The number of points this card is worth when planted.
 	//private int sprout;			// Flora: Sprouts provide VP and can be converted to soil: PDF page 7
 	//private int growth;			// Flora: Growth encompasses trunks and canopies and provide VP: PDF page 8
-	
+
+	private FloraType floraType;
+	protected static boolean sunny;
+	protected static boolean wet;
+	protected static boolean rocky;
+	protected static boolean cold;
+
 	/*
 	 * Children of Card must define toString
 	 * 
@@ -52,7 +58,50 @@ public abstract class Card {
 			return "NOTYPE";
 		}
 	}
-	
+
+	public enum FloraType {
+		TREE,
+		HERB,
+		MUSHROOM,
+		BUSH
+	}
+
+	public void setFloraType(FloraType f) {
+		floraType = f;
+	}
+
+	public String getFloraType() {
+		return switch (floraType) {
+			case TREE -> "Tree";
+			case HERB -> "Herb";
+			case MUSHROOM -> "Mushroom";
+			case BUSH -> "Bush";
+		};
+	}
+
+	public void setHabitatType(boolean s, boolean w, boolean r, boolean c){
+		sunny = s;
+		wet = w;
+		rocky = r;
+		cold = c;
+	}
+
+	public String getSunny() {
+		return "Sunny";
+	}
+
+	public String getWet() {
+		return "Wet";
+	}
+
+	public String getRocky() {
+		return "Rocky";
+	}
+
+	public String getCold() {
+		return "Cold";
+	}
+
 	/*
 	 * set and get soil cost of card. The player must have at least this much soil to plant this card.
 	 */

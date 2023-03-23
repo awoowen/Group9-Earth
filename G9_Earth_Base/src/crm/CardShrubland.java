@@ -5,6 +5,7 @@ public class CardShrubland extends twoActionCard {
     CardShrubland() {
         setName("Shrubland");
         setType(CardType.TERRAIN);
+        setHabitatType(true,true,true,true);
         setSoilCost(2);
         setBasePointValue(0);
         setLeftActionDesc("");		// Set the text for card's left action
