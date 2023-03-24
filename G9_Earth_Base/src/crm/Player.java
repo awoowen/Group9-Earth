@@ -6,7 +6,7 @@ public class Player {
 
 	protected Tableu playerTableu;
 	protected ArrayList<Card> hand;
-	//private ArrayList<Card> compost;
+	private ArrayList<Card> compost;
 	private int soil;
 	//private int leaf;
 	//private Card ecosystemCard;
@@ -19,7 +19,7 @@ public class Player {
 	public Player(EarthDeck gameDeck) {
 		playerTableu = new Tableu();
 		hand = new ArrayList<Card>();
-		//compost = new ArrayList<Card>();
+		compost = new ArrayList<Card>();
 		drawCard(gameDeck);
     	setSoil(1000);
 		//setLeaf();
@@ -34,7 +34,7 @@ public class Player {
 	public Player() {
 		playerTableu = new Tableu();
 		hand = new ArrayList<Card>();
-		//compost = new ArrayList<Card>();
+		compost = new ArrayList<Card>();
 		setSoil(1000);
 		//setLeaf();
 		//ecosystemCard = null;
@@ -62,6 +62,10 @@ public class Player {
 		}
 	}
 	
+	public void compostCard(Card chosenCard) {
+		compost.add(chosenCard);
+	}
+	
 	public boolean isFirstPlayer() {
 		return firstPlayer;
 	}
@@ -87,15 +91,19 @@ public class Player {
 	}
 	
 	public void adjustVP(int amtVP) {
-		setVictoryPoints(getVictoryPoints() + amtVP);
+		victoryPoints += amtVP;
 	}
 	
 	public void setSoil(int amtSoil) {
 		soil = amtSoil;
 	}
 	
-	public void adjustSoil(int amtSoil) {
+	public void addSoil(int amtSoil) {
 		soil += amtSoil;
+	}
+	
+	public void removeSoil(int amtSoil) {
+		soil -= amtSoil;
 	}
 	
 	public int getSoil() {
