@@ -7,6 +7,7 @@ public class GiantBeardedFig extends oneActionCard{
     {
         setName("Giant Beared Fig");
         setType(CardType.FLORA);
+        setFloraType(FloraType.TREE);
         setHabitatType(true, false, false, false);
         setSoilCost(1);
         setBasePointValue(3);

@@ -7,6 +7,7 @@ public class Ginger extends oneActionCard {
     {
         setName("Ginger");
         setType(CardType.FLORA);
+        setFloraType(FloraType.HERB);
         setHabitatType(false, true, false, false);
         setSoilCost(1);
         setBasePointValue(4);

@@ -6,6 +6,7 @@ public class VirginiaStrawberry extends oneActionCard{
     {
         setName("Virginia Strawberry");
         setType(CardType.FLORA);
+        setFloraType(FloraType.HERB);
         setHabitatType(true, true, true, true);
         setSoilCost(1);
         setBasePointValue(0);

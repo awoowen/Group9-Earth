@@ -21,6 +21,9 @@ public class Player {
 		hand = new ArrayList<Card>();
 		compost = new ArrayList<Card>();
 		drawCard(gameDeck);
+		drawCard(gameDeck);
+		drawCard(gameDeck);
+		drawCard(gameDeck);
     	setSoil(1000);
 		//setLeaf();
 		//ecosystemCard = null;

@@ -48,7 +48,8 @@ public class TestDriver {
     	
     	//Plant up to 2 cards, one at a time, into your tableau by paying soil
     	//Active player chooses whether to plant 0-2 cards.
-    	do { 
+    	do {
+			ToScreen.displayHand(activePlayer);
     		System.out.print("Choose the number of cards to plant (0-2): ");
     		numPlant = input.nextInt();
     		if(numPlant > activePlayer.hand.size()) {
@@ -61,10 +62,12 @@ public class TestDriver {
     	} while(errorFlag == true);
     	
     	if(numPlant == 2) {
-    		System.out.println("Choose the card to plant:");
+    		System.out.println("Choose the first card to plant:");
     		ToScreen.displayHand(activePlayer);
     		temp = activePlayer.hand.get(input.nextInt() - 1);
-    		
+
+			temp = checkEventPlant(temp, activePlayer, input);
+
     		System.out.println("Choose the row and column you want to plant in (4x4 grid):");
     		System.out.print("Row (1-4): ");
     		row = input.nextInt();
@@ -83,9 +86,19 @@ public class TestDriver {
         		ToScreen.displayTableu(activePlayer.playerTableu);
     		}
     		
-    		System.out.println("Choose the card to plant:");
+    		System.out.println("Choose the second card to plant:");
     		ToScreen.displayHand(activePlayer);
     		temp = activePlayer.hand.get(input.nextInt() - 1);
+
+			temp = checkEventPlant(temp, activePlayer, input);
+
+			while (temp.getType().equals("Event")) {
+				ToScreen.cannotPlantEvent();
+				temp = activePlayer.hand.get(input.nextInt() - 1);
+				if (!temp.getType().equals("Event")) {
+					break;
+				}
+			}
     		
     		System.out.println("Choose the row and column you want to plant in (4x4 grid):");
     		System.out.print("Row (1-4): ");
@@ -107,9 +120,18 @@ public class TestDriver {
     	} else if(numPlant == 1) {
     		System.out.println("Choose the card to plant:");
     		ToScreen.displayHand(activePlayer);
-
     		temp = activePlayer.hand.get(input.nextInt() - 1);
-    		
+
+			temp = checkEventPlant(temp, activePlayer, input);
+
+//			while (temp.getType().equals("Event")) {
+//				ToScreen.cannotPlantEvent();
+//				temp = activePlayer.hand.get(input.nextInt() - 1);
+//				if (!temp.getType().equals("Event")) {
+//					break;
+//				}
+//			}
+
     		System.out.println("Choose the row and column you want to plant in (4x4 grid):");
     		System.out.print("Row (1-4): ");
     		row = input.nextInt();
@@ -179,7 +201,18 @@ public class TestDriver {
     	
     	//Finally, all players activate the green abilities on their cards
     }
-    
+
+	public static Card checkEventPlant(Card temp, Player activePlayer, Scanner input) {
+		while (temp.getType().equals("Event")) {
+			ToScreen.cannotPlantEvent();
+			temp = activePlayer.hand.get(input.nextInt() - 1);
+			if (!temp.getType().equals("Event")) {
+				break;
+			}
+		}
+		return temp;
+	}
+
     public void compostingAction(Player activePlayer, EarthDeck gameDeck/*, Player[] otherPlayers*/) {
     	Card temp;
     	//int choice;

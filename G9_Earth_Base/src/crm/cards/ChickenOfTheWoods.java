@@ -6,6 +6,7 @@ public class ChickenOfTheWoods extends oneActionCard {
     {
         setName("Chicken of the Woods");
         setType(CardType.FLORA);
+        setFloraType(FloraType.MUSHROOM);
         setHabitatType(false, true, true, false);
         setSoilCost(5);
         setBasePointValue(5);
