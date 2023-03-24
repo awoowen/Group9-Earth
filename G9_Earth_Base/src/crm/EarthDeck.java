@@ -65,6 +65,4 @@ public class EarthDeck {
     public void discardCard(Card disCard) {
     	discardPile.add(disCard);
     }
-
-
 }

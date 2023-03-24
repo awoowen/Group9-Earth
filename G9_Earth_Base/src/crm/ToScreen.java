@@ -76,7 +76,11 @@ public class ToScreen {
 		return temp;
 	}
 
-	public static void cannotPlantEvent(){
-		System.out.println("Cannot plant an Event card. Choose a Flora or Terrain card.");
+	public static void cannotPlantEvent() {
+		System.out.print("Cannot plant an Event card. Choose a Flora or Terrain card: ");
+	}
+
+	public static void selectionOutOfRange(int size) {
+		System.out.print("Choose a card from 1-" + size + ": ");
 	}
 }
