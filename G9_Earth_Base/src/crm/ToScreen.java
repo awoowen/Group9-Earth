@@ -15,16 +15,16 @@ public class ToScreen {
 	}
 
 	public static void displayTableu(Tableu toDisplay) {
-		StringBuilder tableuResult = new StringBuilder();			// Holds the visual representation for tableu. Each card occupies a 3x3 space of chars.
+		StringBuilder tableuResult = new StringBuilder();			// Holds the visual representation for tableau. Each card occupies a 3x3 space of chars.
 											// Card: o-o									No card:
 											//		 |x|											 x
 											//		 o-o 														where x is a number 1 through 16
 
-		StringBuilder cardInfo = new StringBuilder();				// Holds the card info of the tableu. Uses output of Card.toString();
+		StringBuilder cardInfo = new StringBuilder();				// Holds the card info of the tableau. Uses output of Card.toString();
 
 		int cardNum = 1;
 
-		for (Card[] currRow : toDisplay.getTableu()) {				// Loop through tableu to build tableuResult and cardInfo
+		for (Card[] currRow : toDisplay.getTableu()) {				// Loop through tableau to build tableuResult and cardInfo
 			StringBuilder line1 = new StringBuilder();
 			StringBuilder line2 = new StringBuilder();
 			StringBuilder line3 = new StringBuilder();

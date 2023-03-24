@@ -8,11 +8,11 @@ public class Faunaboard {
 	private Card fauna4;
 	private Card eco1;
 	private Card eco2;
-	private int FirstVP = 15,
-			SecondVP = 11,
-			ThirdVP = 8,
-			FourthVP = 6,
-			FifthVP = 5;
+	private int FirstVP = 15;
+	private int SecondVP = 11;
+	private int ThirdVP = 8;
+	private int FourthVP = 6;
+	private int FifthVP = 5;
 
 	public Faunaboard(Card FAUNA1, Card FAUNA2, Card FAUNA3, Card FAUNA4,
 			Card sharedECO1, Card sharedECO2)
