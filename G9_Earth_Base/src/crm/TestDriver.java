@@ -160,7 +160,7 @@ public class TestDriver {
     	
     	ToScreen.displayHand(activePlayer);
     	
-    	//all other players may plant 1 card in their tableau by paying soil and draw 1 card
+    	//All other players may plant 1 card in their tableau by paying soil and draw 1 card
     	//Temporarily not within the scope of the assignment
     	/*for(int i = 0; i < otherPlayers.length; i++) {
     		//Ask other players to choose 0-1 card to plant
@@ -176,15 +176,37 @@ public class TestDriver {
     		otherPlayers[i].drawCard(gameDeck);
     	}*/
     	
-    	//finally, all players activate the green abilities on their cards
-    	//Placeholder
+    	//Finally, all players activate the green abilities on their cards
     }
     
-    public void compostingAction(Player activePlayer) {
-    	//gain 5 soil and take 2 cards from the draw pile and place them in your compost pile without looking at them
-    	//all other players may gain 2 soil OR compost 2 cards from the draw pile
-    	//finally, all players will activate the red and multicolored abilities on their cards
-    	//you will score 1 VP per card in your compost pile at the end of the game
+    public void compostingAction(Player activePlayer, EarthDeck gameDeck/*, Player[] otherPlayers*/) {
+    	Card temp;
+    	//int choice;
+    	
+    	//Gain 5 soil and take 2 cards from the draw pile and place them in your compost pile without looking at them
+    	activePlayer.addSoil(5);
+    	temp = gameDeck.dealTopEarthCard();
+    	activePlayer.compostCard(temp);
+    	temp = gameDeck.dealTopEarthCard();
+    	activePlayer.compostCard(temp);
+    	
+    	//All other players may gain 2 soil OR compost 2 cards from the draw pile
+    	//Temporarily not within the scope of the assignment
+    	/*for(int i = 0; i < otherPlayers.length; i++) {
+    		//Ask other players to choose 0 to gain soil or 1 to compost
+    		if(choice == 0) {
+    			otherPlayers[i].addSoil(2);
+    			}
+    		} else if(choice == 1) {
+    			temp = gameDeck.dealTopEarthCard();
+    			otherPlayers[i].compostCard(temp);
+    			temp = gameDeck.dealTopEarthCard();
+    			otherPlayers[i].compostCard(temp);
+    		}
+    		otherPlayers[i].drawCard(gameDeck);
+    	}*/
+    	
+    	//Finally, all players will activate the red and multicolored abilities on their cards
     }
     
     public void wateringAction(Player activePlayer) {

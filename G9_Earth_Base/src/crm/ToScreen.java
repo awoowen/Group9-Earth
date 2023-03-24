@@ -1,5 +1,7 @@
 package crm;
 
+import java.util.Scanner;
+
 public class ToScreen {
 
 	private static String padZero(int i) {				// Appends leading zeros to make a 2 character string
@@ -62,5 +64,15 @@ public class ToScreen {
 			x += 1;
 			System.out.println(x + ": " + handCards.toString());
 		}
+	}
+	
+	public static int requestInt(Scanner input) {
+		int temp = 0;
+		return temp;
+	}
+	
+	public static String requestString(Scanner input) {
+		String temp = "";
+		return temp;
 	}
 }
