@@ -16,11 +16,8 @@ public class Tableu {
 	}
 	
 	public boolean placeCard(Card chosenCard, int row, int col) {
-		if(row < 1 || row > 4 || col < 1 || col > 4) {
-			return false;
-		}
-		if(tableu[row - 1][col - 1].getType() == "NOTYPE") {
-			tableu[row - 1][col - 1] = chosenCard;
+		if(tableu[row][col].getType() == "NOTYPE") {
+			tableu[row][col] = chosenCard;
 			numCards++;
 			//System.out.println("Card placed successfully.");
 			return true;

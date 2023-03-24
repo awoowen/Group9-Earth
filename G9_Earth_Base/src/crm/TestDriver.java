@@ -6,35 +6,59 @@ public class TestDriver {
 	public static Player[] playerList = new Player[5];
 	
     public static void main(String[] args){
+
+		
 		Menu.beginScreen();
-
+		
     	Scanner input = new Scanner(System.in);
-        EarthDeck earthDeck = new EarthDeck();
-        System.out.println("Earth Deck: " + earthDeck);
-        EarthDeck.shuffleEarth();
 
-        Player p1 = new Player(earthDeck);
-        playerList[0] = p1;
-        p1.setFirstPlayer(true);
-        p1.setActivePlayer(true);
+		// This just does one round of plantingAction
+		EarthDeck earthDeck = new EarthDeck();
+		Player tester = new Player();
+		tester.drawCard(earthDeck);
 
-        while (p1.isActivePlayer()) {
-        	plantingAction(p1, earthDeck, input);
-            //p1.playCard(p1.hand.remove(0), 1, 1);
-            if(p1.hand.size() == 0) {
-                System.out.println("No cards in hand.");
-                break;
-            }
-            if(p1.playerTableu.isFull() == true) {
-            	Menu.endScreen();
-            	return;
-            }
-        }
+		while (!tester.getTableu().isFull()) {
+			plantingActionRedo(tester, earthDeck, input);		// Rewritten version of plantingAction
+			ToScreen.displayTableu(tester.getTableu());
+		}
 
 		Menu.endScreen();
 		return;
     }
+
+		/*
+		 * Returns true if at least 1 card was played. Returns false if canceled without playing; let the player choose another action.
+		 */
+	public static void plantingActionRedo(Player activePlayer, EarthDeck gameDeck, Scanner input) {		// DT redoing
+		// Ask player for number of cards they wish to play.
+		// Play cards from hand, one after another. Stop early if the player can no longer play any cards.
+		// Draw card
+
+		int numToPlay = ToScreen.plantingPrep(activePlayer, input);
+
+		for (int i = 1; i <= numToPlay; i++) {
+			System.out.println("\nPlaying card " + i + " of " + numToPlay);
+			int toPlayFromHand = ToScreen.chooseFromHand(activePlayer, input);
+			if (toPlayFromHand == -1) break;	// Stop playing cards
+			while (activePlayer.hand.get(toPlayFromHand).getSoilCost() > activePlayer.getSoil())
+				toPlayFromHand = ToScreen.chooseFromHandExpensive(activePlayer, input);
+			int spotToPlay = ToScreen.plantCoord(activePlayer, input);
+			activePlayer.playCard(activePlayer.hand.get(toPlayFromHand), spotToPlay);
+		}
+
+		Card[] tempHand = new Card[4];
+
+		System.out.println("\nDrawing 4 cards from draw pile...");
+		for (int i = 0; i < 4; i++) {
+			tempHand[i] = gameDeck.dealTopEarthCard();
+		}
+
+		activePlayer.addToHand(tempHand[ToScreen.chooseFromStack(tempHand, input)]);
+
+		ToScreen.displayHand(activePlayer);
+ 	}
     
+	
     public static void plantingAction(Player activePlayer, EarthDeck gameDeck,/* Player[] otherPlayers,*/ Scanner input) {
     	int numPlant = -1;
     	int row = -1;

@@ -5,11 +5,11 @@ import java.util.Collections;
 
 public class EarthDeck {
 	
-    private static ArrayList<CardAmericanSycamore> earthDeck;
+    private static ArrayList<Card> earthDeck;
     private ArrayList<Card> discardPile;
 
     public EarthDeck() {
-        earthDeck = new ArrayList<>();
+        earthDeck = new ArrayList<Card>();
         discardPile = new ArrayList<Card>();
 
         for (int i = 0; i < 1000; i++) {
@@ -17,15 +17,15 @@ public class EarthDeck {
         }
     }
     
-    public ArrayList<CardAmericanSycamore> getEarthDeck() {
+    public ArrayList<Card> getEarthDeck() {
         return earthDeck;
     }
 
-    public void setEarthDeck(ArrayList<CardAmericanSycamore> earthDeck) {
+    public void setEarthDeck(ArrayList<Card> earthDeck) {
         EarthDeck.earthDeck = earthDeck;
     }
 
-    public CardAmericanSycamore dealTopEarthCard() {
+    public Card dealTopEarthCard() {
         if (earthDeck.size() > 0){
             return earthDeck.remove(0); // dealing the card in the 0 position of the array
         }
