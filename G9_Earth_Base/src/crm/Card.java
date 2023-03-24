@@ -5,14 +5,20 @@ public abstract class Card {
 	private CardType type;		// Type of card; in rulebook: PDF page 4
 	private int soilCost;		// How much soil it costs to plant this card.
 	private int basePointValue;	// The number of points this card is worth when planted.
-	//private int sprout;			// Flora: Sprouts provide VP and can be converted to soil: PDF page 7
-	//private int growth;			// Flora: Growth encompasses trunks and canopies and provide VP: PDF page 8
-	
-	/*
-	 * Children of Card must define toString
-	 * 
-	 * Returns a String for the View to generate UI.
-	 */ 
+	private int sproutMax;		// Flora: Sprouts provide VP and can be converted to soil: PDF page 7
+	private int currSprouts;	// Flora: Current number of sprouts on card
+	private int growthMax;		// Flora: Growth encompasses trunks and canopies and provide VP: PDF page 8
+	private int currGrowth;		// Flora: Current number of growth on card
+	private int canopyVP;		// Flora: Max Growth VP
+
+	private FloraType floraType;
+	protected static boolean sunny;
+	protected static boolean wet;
+	protected static boolean rocky;
+	protected static boolean cold;
+
+	//Children of Card must define toString
+	//Returns a String for the View to generate UI.
 	public abstract String toString();	
 	
 	Card() {
@@ -52,10 +58,51 @@ public abstract class Card {
 			return "NOTYPE";
 		}
 	}
-	
-	/*
-	 * set and get soil cost of card. The player must have at least this much soil to plant this card.
-	 */
+
+	public enum FloraType {
+		TREE,
+		HERB,
+		MUSHROOM,
+		BUSH
+	}
+
+	public void setFloraType(FloraType f) {
+		floraType = f;
+	}
+
+	public String getFloraType() {
+		return switch (floraType) {
+			case TREE -> "Tree";
+			case HERB -> "Herb";
+			case MUSHROOM -> "Mushroom";
+			case BUSH -> "Bush";
+		};
+	}
+
+	public void setHabitatType(boolean s, boolean w, boolean r, boolean c){
+		sunny = s;
+		wet = w;
+		rocky = r;
+		cold = c;
+	}
+
+	public String getSunny() {
+		return "Sunny";
+	}
+
+	public String getWet() {
+		return "Wet";
+	}
+
+	public String getRocky() {
+		return "Rocky";
+	}
+
+	public String getCold() {
+		return "Cold";
+	}
+
+	//Set and get soil cost of card. The player must have at least this much soil to plant this card.
 	public void setSoilCost(int n) {
 		soilCost = n;
 	}
@@ -63,13 +110,67 @@ public abstract class Card {
 		return soilCost;
 	}
 	
-	/*
-	 * set and get base victory point value of card. The player gains this many VP when the score is counted.
-	 */
+	//Set and get base victory point value of card. The player gains this many VP when the score is counted.
 	public void setBasePointValue(int n) {
 		basePointValue = n;
 	}
 	public int getBasePointValue() {
 		return basePointValue;
+	}
+	
+	public void setSproutMax(int n) {
+		sproutMax = n;
+	}
+	
+	public int getSproutMax() {
+		return sproutMax;
+	}
+	
+	public void setGrowthMax(int n) {
+		growthMax = n;
+	}
+	
+	public int getGrowthMax() {
+		return growthMax;
+	}
+	
+	public void setCanopyVP(int n) {
+		canopyVP = n;
+	}
+	
+	public int getCanopyVP() {
+		return canopyVP;
+	}
+	
+	public void setCurrSprouts(int n) {
+		currSprouts = n;
+	}
+	
+	public void addCurrSprouts(int n) {
+		currSprouts += n;
+	}
+	
+	public void removeCurrSprouts(int n) {
+		currSprouts -= n;
+	}
+	
+	public int getCurrSprouts() {
+		return currSprouts;
+	}
+	
+	public void setCurrGrowth(int n) {
+		currGrowth = n;
+	}
+	
+	public void addCurrGrowth(int n) {
+		currGrowth += n;
+	}
+	
+	public void removeCurrGrowth(int n) {
+		currGrowth -= n;
+	}
+	
+	public int getCurrGrowth() {
+		return currGrowth;
 	}
 }

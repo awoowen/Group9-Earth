@@ -15,7 +15,7 @@ public class ToScreen {
 	}
 
 	public static void displayTableu(Tableu toDisplay) {
-		StringBuilder tableuResult = new StringBuilder();			// Holds the visual representation for tableu. Each card occupies a 3x3 space of chars.
+		StringBuilder tableuResult = new StringBuilder();			// Holds the visual representation for tableau. Each card occupies a 3x3 space of chars.
 											// Card: o-o									No card:
 											//		 |x|											 x
 											//		 o-o 														where x is a number 1 through 16
@@ -27,7 +27,7 @@ public class ToScreen {
 		
 		int cardNum = 1;
 
-		for (Card[] currRow : toDisplay.getTableu()) {				// Loop through tableu to build tableuResult and cardInfo
+		for (Card[] currRow : toDisplay.getTableu()) {				// Loop through tableau to build tableuResult and cardInfo
 			StringBuilder line1 = new StringBuilder();
 			StringBuilder line2 = new StringBuilder();
 			StringBuilder line3 = new StringBuilder();
@@ -153,4 +153,51 @@ public class ToScreen {
 		}
 		return result;
 	} 
+	
+	public static int requestInt(Scanner input) {
+		int temp = 0;
+		return temp;
+	}
+	
+	public static String requestString(Scanner input) {
+		String temp = "";
+		return temp;
+	}
+	
+	public static void playerChanges(String activePlayer, int choice, int amount) {
+		if(choice == 0) {
+			System.out.println(activePlayer + " gained " + amount + " soil");
+		}
+	}
+	
+	public static void inspectCardInHand(Player activePlayer, Scanner input) {
+		int index;
+		Card temp;
+		
+		displayHand(activePlayer);
+		
+		System.out.print("Choose a card to inspect: ");
+		index = input.nextInt() - 1;
+		temp = activePlayer.getCardFromHand(index);
+		
+		System.out.println("-----CARD-----");
+		temp.toString();
+	}
+	
+	public static void inspectCardOnTableau(Player activePlayer, Scanner input) {
+		Card temp;
+		int row;
+		int col;
+		
+		displayTableu(activePlayer.getTableu());
+		
+		System.out.print("Choose a row (1-4): ");
+		row = input.nextInt() - 1;
+		System.out.print("Choose a column (1-4): ");
+		col = input.nextInt() - 1;
+		temp = activePlayer.getTableu().chooseCard(row, col);
+		
+		System.out.println("-----CARD-----");
+		temp.toString();
+	}
 }
