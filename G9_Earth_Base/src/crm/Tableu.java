@@ -24,10 +24,8 @@ public class Tableu {
 		if(tableu[row - 1][col - 1].getType() == "NOTYPE") {
 			tableu[row - 1][col - 1] = chosenCard;
 			numCards++;
-			//System.out.println("Card placed successfully.");
 			return true;
 		} else {
-			//System.out.println("There's already a card there.");
 			return false;
 		}
 	}
@@ -42,5 +40,9 @@ public class Tableu {
 	
 	public Card[][] getTableu() {
 		return tableu;
+	}
+	
+	public Card chooseCard(int row, int col) {
+		return tableu[row][col];
 	}
 }

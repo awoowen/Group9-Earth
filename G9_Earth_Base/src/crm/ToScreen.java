@@ -75,4 +75,41 @@ public class ToScreen {
 		String temp = "";
 		return temp;
 	}
+	
+	public static void playerChanges(String activePlayer, int choice, int amount) {
+		if(choice == 0) {
+			System.out.println(activePlayer + " gained " + amount + " soil");
+		}
+	}
+	
+	public static void inspectCardInHand(Player activePlayer, Scanner input) {
+		int index;
+		Card temp;
+		
+		displayHand(activePlayer);
+		
+		System.out.print("Choose a card to inspect: ");
+		index = input.nextInt() - 1;
+		temp = activePlayer.getCardFromHand(index);
+		
+		System.out.println("-----CARD-----");
+		temp.toString();
+	}
+	
+	public static void inspectCardOnTableau(Player activePlayer, Scanner input) {
+		Card temp;
+		int row;
+		int col;
+		
+		displayTableu(activePlayer.getTableu());
+		
+		System.out.print("Choose a row (1-4): ");
+		row = input.nextInt() - 1;
+		System.out.print("Choose a column (1-4): ");
+		col = input.nextInt() - 1;
+		temp = activePlayer.getTableu().chooseCard(row, col);
+		
+		System.out.println("-----CARD-----");
+		temp.toString();
+	}
 }
