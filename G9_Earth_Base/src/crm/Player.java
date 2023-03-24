@@ -8,13 +8,16 @@ public class Player {
 	protected ArrayList<Card> hand;
 	private ArrayList<Card> compost;
 	private int soil;
-	//private int leaf;
 	//private Card ecosystemCard;
 	//private Card islandCard;
 	//private Card climateCard;
 	private boolean firstPlayer;
 	private boolean activePlayer;
 	private int victoryPoints;
+	//private boolean greenAbility;
+	//private boolean orangeAbility;
+	//private boolean blueAbility;
+	//private boolean yellowAbility;
 
 	public Player(EarthDeck gameDeck) {
 		playerTableu = new Tableu();
@@ -22,7 +25,6 @@ public class Player {
 		compost = new ArrayList<Card>();
 		drawCard(gameDeck);
     	setSoil(1000);
-		//setLeaf();
 		//ecosystemCard = null;
 		//islandCard = null;
 		//climateCard = null;
@@ -36,7 +38,6 @@ public class Player {
 		hand = new ArrayList<Card>();
 		compost = new ArrayList<Card>();
 		setSoil(1000);
-		//setLeaf();
 		//ecosystemCard = null;
 		//islandCard = null;
 		//climateCard = null;
@@ -54,10 +55,8 @@ public class Player {
 			adjustVP(chosenCard.getBasePointValue());
 			soil -= chosenCard.getSoilCost();
 			hand.remove(chosenCard);
-			//System.out.println("Successfully placed card.");
 			return true;
 		} else {
-			//System.out.println("Failed to place card.");
 			return false;
 		}
 	}
@@ -113,16 +112,8 @@ public class Player {
 	public Tableu getTableu() {
 		return playerTableu;
 	}
-
-	/*public int getLeaf() {
-		return leaf;
-	}
-
-	public void useLeaf() {
-		leaf = getLeaf() - 1;
-	}
 	
-	public void setLeaf() {
-		leaf = 4;
-	}*/
+	public Card getCardFromHand(int index) {
+		return hand.get(index);
+	}
 }

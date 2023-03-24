@@ -8,7 +8,7 @@ public class Tableu {
 	private int numCards;
 	
 	public Tableu() {
-		tableu = new Card[4][4];		// Initialize tableu to empty card spaces
+		tableu = new Card[4][4];		// Initialize tableau to empty card spaces
 		for (int i = 0; i < tableu.length; i++) {
 			for (int j = 0; j < tableu[i].length; j++) {
 				tableu[i][j] = new CardEmptySpace();
@@ -24,10 +24,8 @@ public class Tableu {
 		if(tableu[row - 1][col - 1].getType() == "NOTYPE") {
 			tableu[row - 1][col - 1] = chosenCard;
 			numCards++;
-			//System.out.println("Card placed successfully.");
 			return true;
 		} else {
-			//System.out.println("There's already a card there.");
 			return false;
 		}
 	}
@@ -42,5 +40,9 @@ public class Tableu {
 	
 	public Card[][] getTableu() {
 		return tableu;
+	}
+	
+	public Card chooseCard(int row, int col) {
+		return tableu[row][col];
 	}
 }
