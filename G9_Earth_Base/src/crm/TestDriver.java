@@ -10,7 +10,7 @@ public class TestDriver {
 
     	Scanner input = new Scanner(System.in);
         EarthDeck earthDeck = new EarthDeck();
-        System.out.println("Earth Deck: " + earthDeck);
+        System.out.println("Earth Deck created: " + earthDeck);
         EarthDeck.shuffleEarth();
 
         Player p1 = new Player(earthDeck);
@@ -107,6 +107,7 @@ public class TestDriver {
     	} else if(numPlant == 1) {
     		System.out.println("Choose the card to plant:");
     		ToScreen.displayHand(activePlayer);
+
     		temp = activePlayer.hand.get(input.nextInt() - 1);
     		
     		System.out.println("Choose the row and column you want to plant in (4x4 grid):");

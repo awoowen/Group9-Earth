@@ -1,8 +1,11 @@
-package crm;
+package crm.cards;
+
+import crm.CardType;
+import crm.twoActionCard;
 
 public class CardAmericanSycamore extends twoActionCard {
 	
-	CardAmericanSycamore() {
+	public CardAmericanSycamore() {
 		setName("American Sycamore");
 		setType(CardType.FLORA);
 		setFloraType(FloraType.TREE);

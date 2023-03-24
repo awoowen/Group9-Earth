@@ -1,8 +1,11 @@
-package crm;
+package crm.cards;
 
-public class CardColdFront extends oneActionCard{
+import crm.CardType;
+import crm.oneActionCard;
 
-    CardColdFront() {
+public class CardColdFront extends oneActionCard {
+
+    public CardColdFront() {
         setName("Cold Front");
         setType(CardType.EVENT);
         setSoilCost(0);

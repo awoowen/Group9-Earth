@@ -1,8 +1,11 @@
-package crm;
+package crm.cards;
+
+import crm.CardType;
+import crm.oneActionCard;
 
 public class CardFlorenceFennel extends oneActionCard {
 
-    CardFlorenceFennel(){
+    public CardFlorenceFennel(){
         setName("Florence Fennel");
         setType(CardType.FLORA);
         setFloraType(FloraType.HERB);
