@@ -5,13 +5,15 @@ import java.util.ArrayList;
 public class Player {
 
 	protected Tableu playerTableu;
-	protected ArrayList<Card> hand;
+
+	protected ArrayList<Card> hand;   // indexed from 0 in the code. Indexed from 1 for the view e.g. player enters 1 for first card.
 	private ArrayList<Card> compost;
+
 	private int soil;
 	//private Card ecosystemCard;
 	//private Card islandCard;
 	//private Card climateCard;
-	private boolean firstPlayer;
+	private boolean firstPlayer;			// Will probably be removed. Player order should be managed by the game loop
 	private boolean activePlayer;
 	private int victoryPoints;
 	//private boolean greenAbility;
@@ -45,6 +47,10 @@ public class Player {
 		setActivePlayer(false);
 		setVictoryPoints(0);
 	}
+
+	public int handSize() {
+		return hand.size();
+	}
 	
 	public void drawCard(EarthDeck gameDeck) {
 		hand.add(gameDeck.dealTopEarthCard());
@@ -60,7 +66,15 @@ public class Player {
 			return false;
 		}
 	}
+
+	public boolean playCard(Card chosenCard, int spot) {	// Spot 1-16. 1 in top left, 16 in bottom right.
+		return playCard(chosenCard, (spot - 1) / 4, (spot - 1) % 4);
+	}
 	
+	public void addToHand(Card c) {
+		hand.add(c);
+	}
+
 	public void compostCard(Card chosenCard) {
 		compost.add(chosenCard);
 	}
