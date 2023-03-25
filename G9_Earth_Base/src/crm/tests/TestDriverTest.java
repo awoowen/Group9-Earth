@@ -1,29 +1,21 @@
 package crm.tests;
 
+import crm.*;
+import crm.cards.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class TestDriverTest {
 
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
-	}
-
+	Player tester;
+	EarthDeck gameDeck;
+	
 	@BeforeEach
-	void setUp() throws Exception {
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
+	void setUpPlayer() {
+		tester = new Player();
+		gameDeck = new EarthDeck();
 	}
 
 	@Test

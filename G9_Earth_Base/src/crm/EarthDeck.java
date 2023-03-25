@@ -28,12 +28,20 @@ public class EarthDeck {
     }
 
     public Card dealTopEarthCard() {
+    	int temp;
+    	
         if (earthDeck.size() > 0){
             return earthDeck.remove(0); // dealing the card in the 0 position of the array
         }
-        //else if (earthDeck.size() == 0) {
-             //Set Discard pile as the refreshed Earth Deck and shuffle it
-        //}
+        else if (earthDeck.size() == 0) {
+            //Set Discard pile as the refreshed Earth Deck and shuffle it
+        	temp = discardPile.size();
+        	for(int i = 0; i < temp; i++) {
+        		earthDeck.add(discardPile.remove(0));
+        	}
+        	shuffleEarth();
+    		return earthDeck.remove(0);
+        }
         else{
             return null;
         }
