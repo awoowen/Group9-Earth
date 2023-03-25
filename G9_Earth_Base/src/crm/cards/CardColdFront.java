@@ -4,7 +4,7 @@ import crm.*;
 
 public class CardColdFront extends oneActionCard {
 
-    CardColdFront() {
+    public CardColdFront() {
         setName("Cold Front");
         setType(CardType.EVENT);
         setSoilCost(0);
