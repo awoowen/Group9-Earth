@@ -43,13 +43,30 @@ public class TestDriver {
     	Card temp = null;
     	Card[] tempHand = new Card[4];
     	boolean errorFlag = false;
-    	
+    	Card cardCheck;
+		int nonEventCount = 0;
+
     	ToScreen.displayTableu(activePlayer.getTableu());
     	
     	//Plant up to 2 cards, one at a time, into your tableau by paying soil
     	//Active player chooses whether to plant 0-2 cards.
     	do {
 			ToScreen.displayHand(activePlayer);
+
+			for(int r = 0; r < activePlayer.hand.size(); r++ ) {
+//				System.out.println( r + ": " + activePlayer.hand.get(r));
+				cardCheck = activePlayer.hand.get(r);
+				if(!cardCheck.getType().equals("Event")) {
+					nonEventCount++;
+					if(nonEventCount >= 2) {
+						break;
+					}
+				}
+			}
+			if(nonEventCount == 0) {
+				break;
+			}
+
     		System.out.print("Choose the number of cards to plant (0-2): ");
     		numPlant = input.nextInt();
     		if(numPlant > activePlayer.hand.size()) {
@@ -60,7 +77,7 @@ public class TestDriver {
     			errorFlag = false;
     		}
     	} while(errorFlag == true);
-    	
+
     	if(numPlant == 2) {
     		System.out.print("Choose the first card to plant:");
 //    		ToScreen.displayHand(activePlayer);
@@ -144,6 +161,9 @@ public class TestDriver {
     		}
     		//ToScreen.displayTableu(activePlayer.playerTableu);
     	}
+//		else if(numPlant == -1) {
+//
+//		}
     	
     	ToScreen.displayTableu(activePlayer.getTableu());
     	
