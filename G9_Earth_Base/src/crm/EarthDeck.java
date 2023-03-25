@@ -66,4 +66,8 @@ public class EarthDeck {
     public void discardCard(Card disCard) {
     	discardPile.add(disCard);
     }
+
+    public int getEarthDeckSize() {
+        return earthDeck.size();
+    }
 }

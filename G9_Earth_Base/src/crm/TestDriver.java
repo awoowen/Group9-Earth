@@ -82,19 +82,18 @@ public class TestDriver {
     	do {
 			ToScreen.displayHand(activePlayer);
 
-			for(int r = 0; r < activePlayer.hand.size(); r++ ) {
-//				System.out.println( r + ": " + activePlayer.hand.get(r));
-				cardCheck = activePlayer.hand.get(r);
-				if(!cardCheck.getType().equals("Event")) {
-					nonEventCount++;
-					if(nonEventCount >= 2) {
-						break;
-					}
-				}
-			}
-			if(nonEventCount == 0) {
-				break;
-			}
+//			for(int r = 0; r < activePlayer.hand.size(); r++ ) {				// check if the player has at least two non Event cards on hand.
+//				cardCheck = activePlayer.hand.get(r);
+//				if(!cardCheck.getType().equals("Event")) {
+//					nonEventCount++;
+//					if(nonEventCount >= 2) {
+//						break;
+//					}
+//				}
+//			}
+//			if(nonEventCount == 0) {
+//				break;
+//			}
 
     		System.out.print("Choose the number of cards to plant (0-2): ");
     		numPlant = input.nextInt();
@@ -239,7 +238,7 @@ public class TestDriver {
 	// Event cards cannot be placed on to the player's Tableau.
 	// This is to check if a player selected an Event card to plant
 	// and instructs them choose a different card.
-	public static int checkEventPlantRedo(int choice, Player activePlayer, Scanner input) {
+	public static int checkEventPlantRedo(int choice, Player activePlayer, Scanner input) {		//Redo for plantingActionRedo
 		int selection = choice;
 		Card temp = activePlayer.hand.get(selection);
 
@@ -257,14 +256,13 @@ public class TestDriver {
 				return -1;
 			}
 			else if (selection < 0 || selection >= activePlayer.hand.size()){
-//				temp = activePlayer.hand.get(choice);
 				continue;
 			}
 		}
 		return (selection);
 	}
 
-	public static Card checkEventPlant(Player activePlayer, Scanner input) {
+	public static Card checkEventPlant(Player activePlayer, Scanner input) {	// this one for plantingAction
 		int selection;
 		Card temp = activePlayer.hand.get(input.nextInt() - 1);
 
