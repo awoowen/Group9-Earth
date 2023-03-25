@@ -33,6 +33,7 @@ public class EarthDeck {
             earthDeck.add(new StrangleTare());
             earthDeck.add(new VirginiaStrawberry());
         }
+        shuffleEarth();
     }
     
     public ArrayList<Card> getEarthDeck() {

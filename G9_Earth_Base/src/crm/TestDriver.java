@@ -16,6 +16,8 @@ public class TestDriver {
 		EarthDeck earthDeck = new EarthDeck();
 		Player tester = new Player();
 		tester.drawCard(earthDeck);
+		tester.drawCard(earthDeck);
+		tester.drawCard(earthDeck);
 
 		while (!tester.getTableu().isFull()) {
 			plantingActionRedo(tester, earthDeck, input);		// Rewritten version of plantingAction
@@ -39,6 +41,9 @@ public class TestDriver {
 		for (int i = 1; i <= numToPlay; i++) {
 			System.out.println("\nPlaying card " + i + " of " + numToPlay);
 			int toPlayFromHand = ToScreen.chooseFromHand(activePlayer, input);
+
+			toPlayFromHand = checkEventPlantRedo(toPlayFromHand, activePlayer, input);
+
 			if (toPlayFromHand == -1) break;	// Stop playing cards
 			while (activePlayer.hand.get(toPlayFromHand).getSoilCost() > activePlayer.getSoil())
 				toPlayFromHand = ToScreen.chooseFromHandExpensive(activePlayer, input);
@@ -107,7 +112,7 @@ public class TestDriver {
 //    		ToScreen.displayHand(activePlayer);
 //    		temp = activePlayer.hand.get(input.nextInt() - 1);
 
-			temp = checkEventPlant(temp, activePlayer, input);	// checks if the player selected in Event card.
+			temp = checkEventPlant(activePlayer, input);	// checks if the player selected in Event card.
 
     		System.out.println("Choose the row and column you want to plant in (4x4 grid):");
     		System.out.print("Row (1-4): ");
@@ -131,15 +136,7 @@ public class TestDriver {
     		System.out.print("Choose the second card to plant:");
 //    		temp = activePlayer.hand.get(input.nextInt() - 1);
 
-			temp = checkEventPlant(temp, activePlayer, input);	// checks if the player selected in Event card.
-
-			while (temp.getType().equals("Event")) {
-				ToScreen.cannotPlantEvent();
-				temp = activePlayer.hand.get(input.nextInt() - 1);
-				if (!temp.getType().equals("Event")) {
-					break;
-				}
-			}
+			temp = checkEventPlant(activePlayer, input);	// checks if the player selected in Event card.
     		
     		System.out.println("Choose the row and column you want to plant in (4x4 grid):");
     		System.out.print("Row (1-4): ");
@@ -163,7 +160,7 @@ public class TestDriver {
 //    		ToScreen.displayHand(activePlayer);
 //    		temp = activePlayer.hand.get(input.nextInt() - 1);
 
-			temp = checkEventPlant(temp, activePlayer, input); 	// player selects a card to plant
+			temp = checkEventPlant(activePlayer, input); 	// player selects a card to plant
 																// and checks if it's an Event card.
 
     		System.out.println("Choose the row and column you want to plant in (4x4 grid):");
@@ -242,9 +239,34 @@ public class TestDriver {
 	// Event cards cannot be placed on to the player's Tableau.
 	// This is to check if a player selected an Event card to plant
 	// and instructs them choose a different card.
-	public static Card checkEventPlant(Card temp, Player activePlayer, Scanner input) {
+	public static int checkEventPlantRedo(int choice, Player activePlayer, Scanner input) {
+		int selection = choice;
+		Card temp = activePlayer.hand.get(selection);
+
+		while (temp.getType().equals("Event")) {
+//			ToScreen.cannotPlantEvent();
+			System.out.print("Cannot plant an Event card. Choose a Flora or Terrain card: ");
+			selection = input.nextInt() - 1;
+			if (selection >= 0 && selection < activePlayer.hand.size()){
+				temp = activePlayer.hand.get(selection);
+				if (!temp.getType().equals("Event")) {
+					break;
+				}
+			}
+			else if(selection == -1) {
+				return -1;
+			}
+			else if (selection < 0 || selection >= activePlayer.hand.size()){
+//				temp = activePlayer.hand.get(choice);
+				continue;
+			}
+		}
+		return (selection);
+	}
+
+	public static Card checkEventPlant(Player activePlayer, Scanner input) {
 		int selection;
-		temp = activePlayer.hand.get(input.nextInt() - 1);
+		Card temp = activePlayer.hand.get(input.nextInt() - 1);
 
 		while (temp.getType().equals("Event")) {
 			ToScreen.cannotPlantEvent();
@@ -255,9 +277,6 @@ public class TestDriver {
 					break;
 				}
 			}
-//			else {
-//				ToScreen.selectionOutOfRange(activePlayer.hand.size());
-//			}
 		}
 		return temp;
 	}
