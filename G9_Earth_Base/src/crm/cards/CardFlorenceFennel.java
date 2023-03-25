@@ -4,7 +4,7 @@ import crm.*;
 
 public class CardFlorenceFennel extends oneActionCard {
 
-    CardFlorenceFennel(){
+    public CardFlorenceFennel(){
         setName("Florence Fennel");
         setType(CardType.FLORA);
         setFloraType(FloraType.HERB);
