@@ -28,9 +28,7 @@ public class TestDriver {
 		return;
     }
 
-		/*
-		 * Returns true if at least 1 card was played. Returns false if canceled without playing; let the player choose another action.
-		 */
+	//Returns true if at least 1 card was played. Returns false if canceled without playing; let the player choose another action.
 	public static void plantingActionRedo(Player activePlayer, EarthDeck gameDeck, Scanner input) {		// DT redoing
 		// Ask player for number of cards they wish to play.
 		// Play cards from hand, one after another. Stop early if the player can no longer play any cards.
@@ -278,8 +276,8 @@ public class TestDriver {
 		}
 		return temp;
 	}
-
-    public void compostingAction(Player activePlayer, EarthDeck gameDeck/*, Player[] otherPlayers*/) {
+    
+    public static void compostingAction(Player activePlayer, EarthDeck gameDeck/*, Player[] otherPlayers*/) {
     	Card temp;
     	//int choice;
     	
@@ -315,7 +313,7 @@ public class TestDriver {
     	//Finally, all players will activate the red and multicolored abilities on their cards
     }
     
-    public void wateringAction(Player activePlayer) {
+    public static void wateringAction(Player activePlayer) {
     	int tempSprouts = 6;
 
     	//Gain up to 6 sprouts, immediately placing them on any of your flora with empty sprout spaces, then gain 2 soil
@@ -328,7 +326,7 @@ public class TestDriver {
     	//you can repeat the sprout to soil conversion (one way) as many times as you want
     }
     
-    public void growingAction(Player activePlayer) {
+    public static void growingAction(Player activePlayer) {
     	//draw 4 cards from the earth deck and place them in your hand
     	//place up to 2 growth on any of your flora with room on their growth space
     	//all other players may either draw 2 cards OR place up to 2 growth on their flora
