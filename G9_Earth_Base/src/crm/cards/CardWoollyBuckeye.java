@@ -8,6 +8,7 @@ public class CardWoollyBuckeye extends oneActionCard {
     {
         setName("Woolly Buckeye");
         setType(CardType.FLORA);
+        setFloraType(FloraType.TREE);
         setHabitatType(true, false, true, false);
         setSoilCost(5);
         setBasePointValue(2);

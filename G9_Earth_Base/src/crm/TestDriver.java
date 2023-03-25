@@ -7,9 +7,9 @@ public class TestDriver {
 	
     public static void main(String[] args){
 
-		
+
 		Menu.beginScreen();
-		
+
     	Scanner input = new Scanner(System.in);
 
 		// This just does one round of plantingAction
@@ -58,7 +58,7 @@ public class TestDriver {
 		ToScreen.displayHand(activePlayer);
  	}
     
-	
+
     public static void plantingAction(Player activePlayer, EarthDeck gameDeck,/* Player[] otherPlayers,*/ Scanner input) {
     	int numPlant = -1;
     	int row = -1;
@@ -67,12 +67,30 @@ public class TestDriver {
     	Card temp;
     	Card[] tempHand = new Card[4];
     	boolean errorFlag = false;
-    	
+    	Card cardCheck;
+		int nonEventCount = 0;
+
     	ToScreen.displayTableu(activePlayer.getTableu());
     	
     	//Plant up to 2 cards, one at a time, into your tableau by paying soil
     	//Active player chooses whether to plant 0-2 cards.
-    	do { 
+    	do {
+			ToScreen.displayHand(activePlayer);
+
+			for(int r = 0; r < activePlayer.hand.size(); r++ ) {
+//				System.out.println( r + ": " + activePlayer.hand.get(r));
+				cardCheck = activePlayer.hand.get(r);
+				if(!cardCheck.getType().equals("Event")) {
+					nonEventCount++;
+					if(nonEventCount >= 2) {
+						break;
+					}
+				}
+			}
+			if(nonEventCount == 0) {
+				break;
+			}
+
     		System.out.print("Choose the number of cards to plant (0-2): ");
     		numPlant = input.nextInt();
     		if(numPlant > activePlayer.hand.size()) {
@@ -83,12 +101,14 @@ public class TestDriver {
     			errorFlag = false;
     		}
     	} while(errorFlag == true);
-    	
+
     	if(numPlant == 2) {
-    		System.out.println("Choose the card to plant:");
-    		ToScreen.displayHand(activePlayer);
-    		temp = activePlayer.hand.get(input.nextInt() - 1);
-    		
+    		System.out.print("Choose the first card to plant:");
+//    		ToScreen.displayHand(activePlayer);
+//    		temp = activePlayer.hand.get(input.nextInt() - 1);
+
+			temp = checkEventPlant(temp, activePlayer, input);	// checks if the player selected in Event card.
+
     		System.out.println("Choose the row and column you want to plant in (4x4 grid):");
     		System.out.print("Row (1-4): ");
     		row = input.nextInt();
@@ -106,10 +126,20 @@ public class TestDriver {
         		//System.out.println("test2");
         		ToScreen.displayTableu(activePlayer.playerTableu);
     		}
-    		
-    		System.out.println("Choose the card to plant:");
-    		ToScreen.displayHand(activePlayer);
-    		temp = activePlayer.hand.get(input.nextInt() - 1);
+
+			ToScreen.displayHand(activePlayer);
+    		System.out.print("Choose the second card to plant:");
+//    		temp = activePlayer.hand.get(input.nextInt() - 1);
+
+			temp = checkEventPlant(temp, activePlayer, input);	// checks if the player selected in Event card.
+
+			while (temp.getType().equals("Event")) {
+				ToScreen.cannotPlantEvent();
+				temp = activePlayer.hand.get(input.nextInt() - 1);
+				if (!temp.getType().equals("Event")) {
+					break;
+				}
+			}
     		
     		System.out.println("Choose the row and column you want to plant in (4x4 grid):");
     		System.out.print("Row (1-4): ");
@@ -129,10 +159,13 @@ public class TestDriver {
         		ToScreen.displayTableu(activePlayer.playerTableu);
     		}
     	} else if(numPlant == 1) {
-    		System.out.println("Choose the card to plant:");
-    		ToScreen.displayHand(activePlayer);
-    		temp = activePlayer.hand.get(input.nextInt() - 1);
-    		
+    		System.out.print("Choose the card to plant:");
+//    		ToScreen.displayHand(activePlayer);
+//    		temp = activePlayer.hand.get(input.nextInt() - 1);
+
+			temp = checkEventPlant(temp, activePlayer, input); 	// player selects a card to plant
+																// and checks if it's an Event card.
+
     		System.out.println("Choose the row and column you want to plant in (4x4 grid):");
     		System.out.print("Row (1-4): ");
     		row = input.nextInt();
@@ -152,7 +185,10 @@ public class TestDriver {
     		}
     		//ToScreen.displayTableu(activePlayer.playerTableu);
     	}
-    	
+//		else if(numPlant == -1) {
+//
+//		}
+
     	ToScreen.displayTableu(activePlayer.getTableu());
     	
     	ToScreen.displayHand(activePlayer);
@@ -202,7 +238,30 @@ public class TestDriver {
     	
     	//Finally, all players activate the green abilities on their cards
     }
-    
+
+	// Event cards cannot be placed on to the player's Tableau.
+	// This is to check if a player selected an Event card to plant
+	// and instructs them choose a different card.
+	public static Card checkEventPlant(Card temp, Player activePlayer, Scanner input) {
+		int selection;
+		temp = activePlayer.hand.get(input.nextInt() - 1);
+
+		while (temp.getType().equals("Event")) {
+			ToScreen.cannotPlantEvent();
+			selection = input.nextInt();
+			if (selection > 0 && selection <= activePlayer.hand.size()){
+				temp = activePlayer.hand.get(selection - 1);
+				if (!temp.getType().equals("Event")) {
+					break;
+				}
+			}
+//			else {
+//				ToScreen.selectionOutOfRange(activePlayer.hand.size());
+//			}
+		}
+		return temp;
+	}
+
     public void compostingAction(Player activePlayer, EarthDeck gameDeck/*, Player[] otherPlayers*/) {
     	Card temp;
     	//int choice;
@@ -216,7 +275,7 @@ public class TestDriver {
     	temp = gameDeck.dealTopEarthCard();
     	activePlayer.compostCard(temp);
     	activePlayer.adjustVP(1);
-    	
+
     	//All other players may gain 2 soil OR compost 2 cards from the draw pile
     	//Temporarily not within the scope of the assignment
     	/*for(int i = 0; i < otherPlayers.length; i++) {
@@ -241,10 +300,10 @@ public class TestDriver {
     
     public void wateringAction(Player activePlayer) {
     	int tempSprouts = 6;
-    	
+
     	//Gain up to 6 sprouts, immediately placing them on any of your flora with empty sprout spaces, then gain 2 soil
     	ToScreen.displayTableu(activePlayer.getTableu());
-    	
+
     	//All other players may either gain up to 2 sprouts OR gain 2 soil
     	//Finally, all players activate the blue and multicolored abilities on their cards
     	//you will score 1 VP per sprout on your tableau at the end of the game

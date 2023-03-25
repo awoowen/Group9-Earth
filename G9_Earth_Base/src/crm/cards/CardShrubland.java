@@ -1,10 +1,11 @@
 package crm.cards;
 
-import crm.*;
+import crm.CardType;
+import crm.twoActionCard;
 
 public class CardShrubland extends twoActionCard {
 
-    CardShrubland() {
+    public CardShrubland() {
         setName("Shrubland");
         setType(CardType.TERRAIN);
         setHabitatType(true,true,true,true);
