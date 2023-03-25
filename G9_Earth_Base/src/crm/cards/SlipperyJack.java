@@ -6,6 +6,7 @@ public class SlipperyJack extends twoActionCard{
     {
         setName("Slippery Jack");
         setType(CardType.FLORA);
+        setFloraType(FloraType.MUSHROOM);
         setHabitatType(false, true, false, true);
         setSoilCost(3);
         setBasePointValue(1);

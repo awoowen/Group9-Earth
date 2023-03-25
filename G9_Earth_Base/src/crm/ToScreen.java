@@ -193,4 +193,8 @@ public class ToScreen {
 		System.out.println("-----CARD-----");
 		temp.toString();
 	}
+
+	public static void cannotPlantEvent() {
+		System.out.print("Cannot plant an Event card. Choose a Flora or Terrain card: ");
+	}
 }

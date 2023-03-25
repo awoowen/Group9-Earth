@@ -1,6 +1,7 @@
 package crm.cards;
 
-import crm.*;
+import crm.CardType;
+import crm.twoActionCard;
 
 public class CardShrubland extends twoActionCard {
 

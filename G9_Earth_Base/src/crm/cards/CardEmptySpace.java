@@ -1,7 +1,7 @@
 package crm.cards;
 
-import crm.*;
-
+import crm.CardType;
+import crm.zeroActionCard;
 
 public class CardEmptySpace extends zeroActionCard {
 

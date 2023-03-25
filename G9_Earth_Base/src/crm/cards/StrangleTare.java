@@ -7,6 +7,7 @@ public class StrangleTare extends oneActionCard {
     {
         setName("Strangle-Tare");
         setType(CardType.FLORA);
+        setFloraType(FloraType.BUSH);
         setHabitatType(false, false, false, false);
         setSoilCost(0);
         setBasePointValue(0);

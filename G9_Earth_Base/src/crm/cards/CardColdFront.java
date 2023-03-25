@@ -1,6 +1,7 @@
 package crm.cards;
 
-import crm.*;
+import crm.CardType;
+import crm.oneActionCard;
 
 public class CardColdFront extends oneActionCard {
 

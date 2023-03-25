@@ -7,6 +7,7 @@ public class IndianOyster extends oneActionCard {
     {
         setName("Indian Oyster");
         setType(CardType.FLORA);
+        setFloraType(FloraType.MUSHROOM);
         setHabitatType(false, false, false, false);
         setSoilCost(4);
         setBasePointValue(5);
