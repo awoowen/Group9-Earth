@@ -27,7 +27,12 @@ class TestDriverTest {
 	}
 
 	@Test
-	void test() {
+	void testPlantingActionRedo() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testCompostingAction() {
 		fail("Not yet implemented");
 	}
 

@@ -59,8 +59,7 @@ public class ToScreen {
 	}
 	
 	/* Displays a player's hand of cards
-	 * Cards are numbered starting with 1
-	 */
+	 * Cards are numbered starting with 1*/
 	public static void displayHand(Player activePlayer) {
 		int x = 0;
 		System.out.println("\n-----HAND-----");
@@ -72,8 +71,7 @@ public class ToScreen {
 	}
 
 	/* Displays an array of cards
-	 * Cards are numbered starting with 1
-	 */
+	 * Cards are numbered starting with 1*/
 	public static void displayStack(Card[] stack) {
 		int x = 0;
 		System.out.println("\n-----DRAWN CARDS-----");
@@ -85,8 +83,7 @@ public class ToScreen {
 	}
 
 	/* Prompt player to enter number of cards to play.
-	 * Loops until valid input is entered.
-	 */
+	 * Loops until valid input is entered.*/
 	public static int plantingPrep(Player p, Scanner input) {
 		displayTableu(p.getTableu());
 		displayHand(p);
@@ -106,8 +103,7 @@ public class ToScreen {
 	/* Prompt player to select card from hand. 
 	 * Return index (from 0) of card chosen.
 	 * Returns -1 when player chooses not to play card.
-	 * Returns less than -1 when player chooses to cancel
-	 */
+	 * Returns less than -1 when player chooses to cancel*/
 	public static int chooseFromHand(Player p, Scanner input) {
 		displayHand(p);
 		int choice = 0;
@@ -126,8 +122,7 @@ public class ToScreen {
 	}
 
 	/* Prompt player to select card from array.
-	 * Return index of card chosen.
-	 */
+	 * Return index of card chosen.*/
 	public static int chooseFromStack(Card[] c, Scanner input) {
 		displayStack(c);
 		int result;
@@ -140,9 +135,7 @@ public class ToScreen {
 		return (result - 1);
 	}
 	
-	/* 
-	 * Prompt player to enter int 1-16 for choosing planting location
-	 */
+	//Prompt player to enter int 1-16 for choosing planting location
 	public static int plantCoord(Player p, Scanner input) {
 		displayTableu(p.getTableu());
 		System.out.println("\nEnter a number to plant at that spot (1-16): ");

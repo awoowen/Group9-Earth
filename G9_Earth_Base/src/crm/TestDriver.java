@@ -26,9 +26,7 @@ public class TestDriver {
 		return;
     }
 
-		/*
-		 * Returns true if at least 1 card was played. Returns false if canceled without playing; let the player choose another action.
-		 */
+	//Returns true if at least 1 card was played. Returns false if canceled without playing; let the player choose another action.
 	public static void plantingActionRedo(Player activePlayer, EarthDeck gameDeck, Scanner input) {		// DT redoing
 		// Ask player for number of cards they wish to play.
 		// Play cards from hand, one after another. Stop early if the player can no longer play any cards.

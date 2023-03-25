@@ -1,6 +1,6 @@
 package crm;
 
-import crm.cards.CardAmericanSycamore;
+import crm.cards.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
