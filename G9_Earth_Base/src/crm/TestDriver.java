@@ -6,35 +6,59 @@ public class TestDriver {
 	public static Player[] playerList = new Player[5];
 	
     public static void main(String[] args){
+
+		
 		Menu.beginScreen();
-
+		
     	Scanner input = new Scanner(System.in);
-        EarthDeck earthDeck = new EarthDeck();
-        System.out.println("Earth Deck: " + earthDeck);
-        EarthDeck.shuffleEarth();
 
-        Player p1 = new Player(earthDeck);
-        playerList[0] = p1;
-        p1.setFirstPlayer(true);
-        p1.setActivePlayer(true);
+		// This just does one round of plantingAction
+		EarthDeck earthDeck = new EarthDeck();
+		Player tester = new Player();
+		tester.drawCard(earthDeck);
 
-        while (p1.isActivePlayer()) {
-        	plantingAction(p1, earthDeck, input);
-            //p1.playCard(p1.hand.remove(0), 1, 1);
-            if(p1.hand.size() == 0) {
-                System.out.println("No cards in hand.");
-                break;
-            }
-            if(p1.playerTableu.isFull() == true) {
-            	Menu.endScreen();
-            	return;
-            }
-        }
+		while (!tester.getTableu().isFull()) {
+			plantingActionRedo(tester, earthDeck, input);		// Rewritten version of plantingAction
+			ToScreen.displayTableu(tester.getTableu());
+		}
 
 		Menu.endScreen();
 		return;
     }
+
+		/*
+		 * Returns true if at least 1 card was played. Returns false if canceled without playing; let the player choose another action.
+		 */
+	public static void plantingActionRedo(Player activePlayer, EarthDeck gameDeck, Scanner input) {		// DT redoing
+		// Ask player for number of cards they wish to play.
+		// Play cards from hand, one after another. Stop early if the player can no longer play any cards.
+		// Draw card
+
+		int numToPlay = ToScreen.plantingPrep(activePlayer, input);
+
+		for (int i = 1; i <= numToPlay; i++) {
+			System.out.println("\nPlaying card " + i + " of " + numToPlay);
+			int toPlayFromHand = ToScreen.chooseFromHand(activePlayer, input);
+			if (toPlayFromHand == -1) break;	// Stop playing cards
+			while (activePlayer.hand.get(toPlayFromHand).getSoilCost() > activePlayer.getSoil())
+				toPlayFromHand = ToScreen.chooseFromHandExpensive(activePlayer, input);
+			int spotToPlay = ToScreen.plantCoord(activePlayer, input);
+			activePlayer.playCard(activePlayer.hand.get(toPlayFromHand), spotToPlay);
+		}
+
+		Card[] tempHand = new Card[4];
+
+		System.out.println("\nDrawing 4 cards from draw pile...");
+		for (int i = 0; i < 4; i++) {
+			tempHand[i] = gameDeck.dealTopEarthCard();
+		}
+
+		activePlayer.addToHand(tempHand[ToScreen.chooseFromStack(tempHand, input)]);
+
+		ToScreen.displayHand(activePlayer);
+ 	}
     
+	
     public static void plantingAction(Player activePlayer, EarthDeck gameDeck,/* Player[] otherPlayers,*/ Scanner input) {
     	int numPlant = -1;
     	int row = -1;
@@ -160,7 +184,7 @@ public class TestDriver {
     	
     	ToScreen.displayHand(activePlayer);
     	
-    	//all other players may plant 1 card in their tableau by paying soil and draw 1 card
+    	//All other players may plant 1 card in their tableau by paying soil and draw 1 card
     	//Temporarily not within the scope of the assignment
     	/*for(int i = 0; i < otherPlayers.length; i++) {
     		//Ask other players to choose 0-1 card to plant
@@ -176,21 +200,53 @@ public class TestDriver {
     		otherPlayers[i].drawCard(gameDeck);
     	}*/
     	
-    	//finally, all players activate the green abilities on their cards
-    	//Placeholder
+    	//Finally, all players activate the green abilities on their cards
     }
     
-    public void compostingAction(Player activePlayer) {
-    	//gain 5 soil and take 2 cards from the draw pile and place them in your compost pile without looking at them
-    	//all other players may gain 2 soil OR compost 2 cards from the draw pile
-    	//finally, all players will activate the red and multicolored abilities on their cards
-    	//you will score 1 VP per card in your compost pile at the end of the game
+    public void compostingAction(Player activePlayer, EarthDeck gameDeck/*, Player[] otherPlayers*/) {
+    	Card temp;
+    	//int choice;
+    	
+    	//Gain 5 soil and take 2 cards from the draw pile and place them in your compost pile without looking at them
+    	activePlayer.addSoil(5);
+    	ToScreen.playerChanges("Player 1", 0, 5);
+    	temp = gameDeck.dealTopEarthCard();
+    	activePlayer.compostCard(temp);
+    	activePlayer.adjustVP(1);
+    	temp = gameDeck.dealTopEarthCard();
+    	activePlayer.compostCard(temp);
+    	activePlayer.adjustVP(1);
+    	
+    	//All other players may gain 2 soil OR compost 2 cards from the draw pile
+    	//Temporarily not within the scope of the assignment
+    	/*for(int i = 0; i < otherPlayers.length; i++) {
+    		//Ask other players to choose 0 to gain soil or 1 to compost
+    		if(choice == 0) {
+    			otherPlayers[i].addSoil(2);
+    			ToScreen.playerChanges("Player #", 0, 2);
+    			}
+    		} else if(choice == 1) {
+    			temp = gameDeck.dealTopEarthCard();
+    			otherPlayers[i].compostCard(temp);
+    			otherPlayers[i].adjustVP(1);
+    			temp = gameDeck.dealTopEarthCard();
+    			otherPlayers[i].compostCard(temp);
+    			otherPlayers[i].adjustVP(1);
+    		}
+    		otherPlayers[i].drawCard(gameDeck);
+    	}*/
+    	
+    	//Finally, all players will activate the red and multicolored abilities on their cards
     }
     
     public void wateringAction(Player activePlayer) {
-    	//gain up to 6 sprouts, immediately placing them on any of your flora with empty sprout spaces, then gain 2 soil
-    	//all other players may either gain up to 2 sprouts OR gain 2 soil
-    	//finally, all players activate the blue and multicolored abilities on their cards
+    	int tempSprouts = 6;
+    	
+    	//Gain up to 6 sprouts, immediately placing them on any of your flora with empty sprout spaces, then gain 2 soil
+    	ToScreen.displayTableu(activePlayer.getTableu());
+    	
+    	//All other players may either gain up to 2 sprouts OR gain 2 soil
+    	//Finally, all players activate the blue and multicolored abilities on their cards
     	//you will score 1 VP per sprout on your tableau at the end of the game
     	//sprouts can be converted to soil at a ratio of 3 sprouts to 2 soil at any time during the game except while gaining them during the watering action or in the middle of a card's ability
     	//you can repeat the sprout to soil conversion (one way) as many times as you want
