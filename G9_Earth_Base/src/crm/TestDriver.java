@@ -64,7 +64,7 @@ public class TestDriver {
     	int row = -1;
     	int col = -1;
     	int counter;
-    	Card temp;
+    	Card temp = null;
     	Card[] tempHand = new Card[4];
     	boolean errorFlag = false;
     	Card cardCheck;
