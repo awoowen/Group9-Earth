@@ -76,4 +76,8 @@ public class EarthDeck {
     public int getEarthDeckSize() {
         return earthDeck.size();
     }
+
+    public int getDiscardPileSize() {
+        return discardPile.size();
+    }
 }
