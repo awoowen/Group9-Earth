@@ -54,9 +54,16 @@ public class Player {
 	public int handSize() {
 		return hand.size();
 	}
-	
+
+	// This allows the players to draw from the deck
 	public void drawCard(EarthDeck gameDeck) {
 		hand.add(gameDeck.dealTopEarthCard());
+	}
+
+	// This allows the players to draw a specific card or card type
+	public void drawCard(Card card)
+	{
+		hand.add(card);
 	}
 
 	public boolean playCard(Card chosenCard, int row, int col) {

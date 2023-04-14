@@ -15,7 +15,7 @@ public class TestDriver {
 		// This just does one round of plantingAction
 		EarthDeck earthDeck = new EarthDeck();
 		Player tester = new Player();
-		tester.drawCard(earthDeck);
+		tester.drawCard(earthDeck.drawEcocard());
 		tester.drawCard(earthDeck);
 		tester.drawCard(earthDeck);
 

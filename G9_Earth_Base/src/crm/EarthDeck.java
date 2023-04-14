@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class EarthDeck {
-	
+
     private static ArrayList<Card> earthDeck;
     private ArrayList<Card> discardPile;
 
@@ -14,6 +14,7 @@ public class EarthDeck {
         earthDeck = new ArrayList<>();
         discardPile = new ArrayList<>();
 
+        // There are 20 copies of each card
         for (int i = 0; i < 20; i++) {
             earthDeck.add(new CardAmericanSycamore());
             earthDeck.add(new CardColdFront());
@@ -46,7 +47,7 @@ public class EarthDeck {
 
     public Card dealTopEarthCard() {
     	int temp;
-    	
+
         if (earthDeck.size() > 0){
             return earthDeck.remove(0);     // dealing the card in the 0 position of the array
         }
@@ -75,5 +76,34 @@ public class EarthDeck {
 
     public int getEarthDeckSize() {
         return earthDeck.size();
+    }
+
+    // Looks for the first eco card on the top of the deck
+    public Card drawEcocard()
+    {
+        try
+        {
+            for(int i = 0; i < earthDeck.size(); i++)
+            {
+                if(CardType.ECOSYSTEM == earthDeck.get(i).getCardType())
+                {
+                    // Putting the card into a variable then removing it after
+                    Card c = earthDeck.get(i);
+                    // Removing card from deck
+                    earthDeck.remove(i);
+
+                    return c;
+                }
+            }
+
+            // If we don't find anything, we throw an exception saying that the card isn't found
+            throw new CardNotFoundException("The card was not found in the deck.");
+        }
+        catch(CardNotFoundException e)
+        {
+            System.out.println(e);
+        }
+
+        return new ErrorCard();
     }
 }
