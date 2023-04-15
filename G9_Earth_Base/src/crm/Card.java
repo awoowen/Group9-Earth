@@ -2,6 +2,7 @@ package crm;
 
 public abstract class Card {
 	private String name;		// Name on card; in rulebook: PDF page 4 number 5
+	private String secondName;	// Name on back side of card.
 	private CardType type;		// Type of card; in rulebook: PDF page 4
 	private int soilCost;		// How much soil it costs to plant this card.
 	private int basePointValue;	// The number of points this card is worth when planted.
@@ -34,10 +35,19 @@ public abstract class Card {
 	public String getName() {
 		return name;
 	}
+
+	public void setSecondName(String n) {
+		secondName = n;
+	}
+
+	public String getSecondName() {
+		return secondName;
+	}
 	
 	public void setType(CardType n) {
 		type = n;
 	}
+
 	public String getType() {
 		switch (type) {
 		case FLORA:

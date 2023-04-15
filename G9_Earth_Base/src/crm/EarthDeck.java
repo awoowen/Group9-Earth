@@ -10,6 +10,9 @@ public class EarthDeck {
     private static ArrayList<Card> earthDeck;
     private ArrayList<Card> discardPile;
 
+    /**
+     * Creates the Earth deck and discard pile.
+     */
     public EarthDeck() {
         earthDeck = new ArrayList<>();
         discardPile = new ArrayList<>();
@@ -44,15 +47,20 @@ public class EarthDeck {
         EarthDeck.earthDeck = earthDeck;
     }
 
+    /**
+     * Deals the top card from the Earth deck. If it is empty, it will refresh the Earth deck
+     * by taking the Earth cards from the discard pile then shuffling them.
+     *
+     * @return Card at top of Earth deck
+     */
     public Card dealTopEarthCard() {
     	int temp;
     	
         if (earthDeck.size() > 0){
-            return earthDeck.remove(0);     // dealing the card in the 0 position of the array
+            return earthDeck.remove(0);
         }
 
         else if (earthDeck.size() == 0) {
-            //Set Discard pile as the refreshed Earth Deck and shuffle it
         	temp = discardPile.size();
         	for(int i = 0; i < temp; i++) {
         		earthDeck.add(discardPile.remove(0));

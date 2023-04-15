@@ -14,20 +14,21 @@ public class Faunaboard {
 	private int FourthVP = 6;
 	private int FifthVP = 5;
 
-	public Faunaboard(Card FAUNA1, Card FAUNA2, Card FAUNA3, Card FAUNA4,
-			Card sharedECO1, Card sharedECO2)
+	public Faunaboard(Card fauna1/*, Card fauna2, Card fauna3, Card fauna4, Card sharedEco1, Card sharedEco2*/ )
 	{
-		fauna1 = FAUNA1;
-		fauna2 = FAUNA2;
-		fauna3 = FAUNA3;
-		fauna4 = FAUNA4;
-		eco1 = sharedECO1;
-		eco2 = sharedECO2;
+		this.fauna1 = fauna1;
+//		this.fauna2 = fauna2;
+//		this.fauna3 = fauna3;
+//		this.fauna4 = fauna4;
+//		eco1 = sharedEco1;
+//		eco2 = sharedEco2;
 
 	}
 
+	/**
+	 * If a player meets requirements for a Fauna, set them in 1st, 2nd, 3rd, 4th, or 5th place
+	 * to achieve victory points.
+	 */
 	public void Points() {
-//        If a player meets requirements for a Fauna, set them in 1st, 2nd, 3rd, 4th, or 5th
-//        to achieve victory points.
 	}
 }
