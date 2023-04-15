@@ -59,6 +59,11 @@ public abstract class Card {
 		}
 	}
 
+	public CardType getCardType()
+	{
+		return type;
+	}
+
 	public enum FloraType {
 		TREE,
 		HERB,
