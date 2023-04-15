@@ -348,12 +348,36 @@ public class TestDriver {
     	}
     }
     
-    public static void growingAction(Player activePlayer) {
-    	//draw 4 cards from the earth deck and place them in your hand
-    	//place up to 2 growth on any of your flora with room on their growth space
-    	//all other players may either draw 2 cards OR place up to 2 growth on their flora
-    	//finall, all players active the yellow and multicolored abilities on their cards
-    	//you will score 1 VP per growth on your tableau at the end of the game
-    	//any flora that have reached max growth will instead earn their canopy completion VP
+    public static void growingAction(Player activePlayer, EarthDeck gameDeck, Scanner input) {
+    	int choice;
+    	String yesNo;
+    	int growthCounter = 2;
+    	Card temp;
+    	
+    	//Player may draw up to 4 cards from the earth deck and place them in their hand
+    	choice = ToScreen.requestInt(input, 0);
+    	if(choice != 0) {
+    		for(int i = 0; i < choice; i++) {
+    			activePlayer.drawCard(gameDeck);
+    		}
+    	}
+    	
+    	//Place up to 2 growth on any of your flora with room on their growth space
+    	while(growthCounter != 0) {
+    		yesNo = ToScreen.requestString(input, 0);
+    		if(yesNo == "y") {
+    			temp = activePlayer.getTableu().chooseCard(ToScreen.growthCoord(activePlayer, input));
+    			if(temp.getType() == "Flora" && temp.getCurrGrowth() < temp.getGrowthMax()) {
+    				activePlayer.getTableu().chooseCard(ToScreen.growthCoord(activePlayer, input)).addCurrGrowth(1);
+    				growthCounter--;
+    			}
+    		} else if(yesNo == "n") {
+    			growthCounter = 0;
+    		}
+    	}
+    	//All other players may either draw 2 cards OR place up to 2 growth on their flora
+    	//Finally, all players active the yellow and multicolored abilities on their cards
+    	//You will score 1 VP per growth on your tableau at the end of the game
+    	//Any flora that have reached max growth will instead earn their canopy completion VP
     }
 }
