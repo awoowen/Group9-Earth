@@ -1,5 +1,6 @@
 package crm;
 //Group 9: Andrew Nguyen(awoowen), Austin Ly(Falenheart), Derek Trinh(tcderk), Joseph Kim(JosephAlphaBBQ)
+import java.util.Random;
 import java.util.Scanner;
 
 public class TestDriver {
@@ -9,6 +10,8 @@ public class TestDriver {
 
 
 		Menu.beginScreen();
+
+		faunaBoardSetup();
 
     	Scanner input = new Scanner(System.in);
 
@@ -233,10 +236,17 @@ public class TestDriver {
     	//Finally, all players activate the green abilities on their cards
     }
 
-	// Event cards cannot be placed on to the player's Tableau.
-	// This is to check if a player selected an Event card to plant
-	// and instructs them choose a different card.
-	public static int checkEventPlantRedo(int choice, Player activePlayer, Scanner input) {		//Redo for plantingActionRedo
+	/**
+	 * Event cards cannot be placed on to the player's Tableau. This is to check if a player selected
+	 * an Event card to plant and instructs them choose a different card.
+	 * checkEventPlantRedo for plantingActionRedo
+	 *
+	 * @param choice
+	 * @param activePlayer
+	 * @param input
+	 * @return
+	 */
+	public static int checkEventPlantRedo(int choice, Player activePlayer, Scanner input) {		// Redo for plantingActionRedo
 		int selection = choice;
 		Card temp = activePlayer.hand.get(selection);
 
@@ -260,7 +270,13 @@ public class TestDriver {
 		return (selection);
 	}
 
-	public static Card checkEventPlant(Player activePlayer, Scanner input) {	// this one for plantingAction
+	/** checkEventPlant for plantingAction
+	 *
+	 * @param activePlayer
+	 * @param input
+	 * @return
+	 */
+	public static Card checkEventPlant(Player activePlayer, Scanner input) {
 		int selection;
 		Card temp = activePlayer.hand.get(input.nextInt() - 1);
 
@@ -334,4 +350,44 @@ public class TestDriver {
     	//you will score 1 VP per growth on your tableau at the end of the game
     	//any flora that have reached max growth will instead earn their canopy completion VP
     }
+
+	public static void faunaBoardSetup() {
+		FaunaDeck faunaDeck = new FaunaDeck();
+
+//		FaunaCard temp1 = faunaDeck.dealTopFaunaCard();
+//		FaunaCard temp2 = faunaDeck.dealTopFaunaCard();
+//		FaunaCard temp3 = faunaDeck.dealTopFaunaCard();
+//		FaunaCard temp4 = faunaDeck.dealTopFaunaCard();
+//		System.out.println(temp1);
+//		System.out.println(temp2);
+//		System.out.println(temp3);
+//		System.out.println(temp4);
+
+		Random rand = new Random();
+		int randomNum;
+
+//		int randomNum1 = rand.nextInt(2);
+//		System.out.println(randomNum1);
+//		int randomNum2 = rand.nextInt(2);
+//		System.out.println(randomNum2);
+//		int randomNum3 = rand.nextInt(2);
+//		System.out.println(randomNum3);
+//		int randomNum4 = rand.nextInt(2);
+//		System.out.println(randomNum4);
+
+		FaunaCard temp;
+		Faunaboard faunaboard;
+
+		for (int i = 0; i < 1; i++){
+			temp = faunaDeck.dealTopFaunaCard();
+
+			randomNum = rand.nextInt(2);
+			if (randomNum == 0) {
+			}
+			else {
+
+			}
+
+		}
+	}
 }
