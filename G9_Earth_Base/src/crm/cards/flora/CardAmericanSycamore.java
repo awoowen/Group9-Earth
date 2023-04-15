@@ -1,4 +1,4 @@
-package crm.cards;
+package crm.cards.flora;
 
 import crm.CardType;
 import crm.twoActionCard;

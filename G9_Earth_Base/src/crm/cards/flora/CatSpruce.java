@@ -1,4 +1,4 @@
-package crm.cards;
+package crm.cards.flora;
 
 import crm.*;
 public class CatSpruce extends oneActionCard{

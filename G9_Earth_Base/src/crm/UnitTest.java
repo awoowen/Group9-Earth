@@ -1,6 +1,24 @@
 package crm;
 
 import crm.cards.*;
+import crm.cards.event.CardColdFront;
+import crm.cards.flora.CardAmericanSycamore;
+import crm.cards.flora.CardFlorenceFennel;
+import crm.cards.flora.CardWoollyBuckeye;
+import crm.cards.flora.CatSpruce;
+import crm.cards.flora.ChickenOfTheWoods;
+import crm.cards.flora.GiantBeardedFig;
+import crm.cards.flora.Ginger;
+import crm.cards.flora.IndianOyster;
+import crm.cards.flora.SlipperyJack;
+import crm.cards.flora.StrangleTare;
+import crm.cards.flora.VirginiaStrawberry;
+import crm.cards.terrain.Aridisol;
+import crm.cards.terrain.CardShrubland;
+import crm.cards.terrain.FallenSequoia;
+import crm.cards.terrain.RedwoodForest;
+import crm.cards.terrain.SandDunes;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
