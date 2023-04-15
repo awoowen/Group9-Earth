@@ -1,4 +1,4 @@
-package crm.cards;
+package crm.cards.event;
 
 import crm.CardType;
 import crm.oneActionCard;

@@ -1,6 +1,9 @@
 package crm;
 
 import crm.cards.*;
+import crm.cards.event.*;
+import crm.cards.flora.*;
+import crm.cards.terrain.*;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -2,6 +2,8 @@ package crm.tests;
 
 import crm.*;
 import crm.cards.*;
+import crm.cards.flora.CardAmericanSycamore;
+import crm.cards.flora.CardFlorenceFennel;
 
 import static org.junit.jupiter.api.Assertions.*;
 
