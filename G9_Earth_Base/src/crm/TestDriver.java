@@ -331,16 +331,21 @@ public class TestDriver {
     	int maxEmptySpaces = activePlayer.getTableu().countEmptySprouts();
     	if (maxEmptySpaces < tempSprouts) tempSprouts = maxEmptySpaces;
     	
-    	// Select spot to water
-    	locationToWater = ToScreen.waterCoord(activePlayer, input);
-    	while (!activePlayer.getTableu().chooseCard((locationToWater - 1) / 4, (locationToWater - 1) % 4).getType().equals("Flora")) {
-    		System.out.println("\nYou must choose a plant card\n");
+    	while (tempSprouts > 0) {
+    		System.out.println("Number of sprouts to grow: " + tempSprouts);
+    		// Select spot to water
     		locationToWater = ToScreen.waterCoord(activePlayer, input);
+    		while (!activePlayer.getTableu().chooseCard((locationToWater - 1) / 4, (locationToWater - 1) % 4).getType().equals("Flora")) {
+    			System.out.println("\nYou must choose a plant card\n");
+    			locationToWater = ToScreen.waterCoord(activePlayer, input);
+    		}
+    	
+    		amountToWater = ToScreen.waterAmt(activePlayer, locationToWater, tempSprouts, input);
+    	
+    		activePlayer.getTableu().chooseCard(locationToWater).addCurrSprouts(amountToWater);
+    	
+    		tempSprouts -= amountToWater;
     	}
-    	
-    	amountToWater = ToScreen.waterAmt(activePlayer, locationToWater, tempSprouts, input);
-    	
-    	
     }
     
     public static void growingAction(Player activePlayer) {
