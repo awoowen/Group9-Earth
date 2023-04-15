@@ -81,6 +81,10 @@ public class EarthDeck {
         return earthDeck.size();
     }
 
+    public int getDiscardPileSize() {
+        return discardPile.size();
+    }
+
     // Looks for the first eco card on the top of the deck
     public Card drawEcocard()
     {

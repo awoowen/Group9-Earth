@@ -3,6 +3,7 @@ package crm;
 import java.util.ArrayList;
 import java.util.Collections;
 import crm.cards.*;
+import crm.cards.fauna.*;
 
 public class FaunaDeck {
 
@@ -13,10 +14,25 @@ public class FaunaDeck {
 		faunaDeck = new ArrayList<>();
 		discardPile = new ArrayList<>();
 		
-		//Add some cards here
+		faunaDeck.add(new BaldEagle());
+    faunaDeck.add(new PaleBilledWoodpecker());
+    faunaDeck.add(new YellowBellied());
+    faunaDeck.add(new MarmotRedSquirrel());
+    faunaDeck.add(new EuropeanMole());
+    faunaDeck.add(new EarthWorm());
+    faunaDeck.add(new AndeanCondor());
+    faunaDeck.add(new GreenTreeAnt());
 		
 		shuffleDeck();
 	}
+  
+  public void setFaunaDeck(ArrayList<Card> faunaDeck) {
+      FaunaDeck.faunaDeck = faunaDeck;
+  }
+
+  public ArrayList<Card> getFaunaDeck() {
+      return faunaDeck;
+  }
 
 	public void shuffleDeck()
     {
