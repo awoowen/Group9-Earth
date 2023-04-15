@@ -380,4 +380,13 @@ public class TestDriver {
     	//You will score 1 VP per growth on your tableau at the end of the game
     	//Any flora that have reached max growth will instead earn their canopy completion VP
     }
+    
+    public static void initialSetup(Player activePlayer, EcoDeck ecoSetup, ClimateDeck climateSetup, IslandDeck islandSetup) {
+    	//Setup and shuffle EarthDeck
+    	//Setup Faunaboard
+    	//Shuffle and deal each player 2 (1 double sided card) Ecosystem cards of which the players chose one and discard the other
+    	//Shuffle and deal each player 1 Island card
+    	//Shuffle and deal each player 1 Climate card
+    	//Randomly select first player
+    }
 }

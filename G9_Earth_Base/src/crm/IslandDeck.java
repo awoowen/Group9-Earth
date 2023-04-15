@@ -3,6 +3,8 @@ package crm;
 import crm.cards.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import crm.cards.island.*;
+
 public class IslandDeck {
     private static ArrayList<Card> islandDeck;
     private ArrayList<Card> discardPile;
@@ -13,8 +15,7 @@ public class IslandDeck {
         discardPile = new ArrayList<>();
 
         //Add some cards here
-
-
+        islandDeck.add(new MetisShoal());
 
         shuffleDeck();
     }

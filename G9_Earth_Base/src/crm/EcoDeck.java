@@ -3,6 +3,7 @@ package crm;
 import java.util.ArrayList;
 import java.util.Collections;
 import crm.cards.*;
+import crm.cards.ecosystem.*;
 
 public class EcoDeck {
     private static ArrayList<Card> ecoDeck;
@@ -13,7 +14,8 @@ public class EcoDeck {
         ecoDeck = new ArrayList<>();
 
         // Add some ecosystem cards
-
+        ecoDeck.add(new GreatBasinDesert());
+        
         shuffleDeck();
     }
 
