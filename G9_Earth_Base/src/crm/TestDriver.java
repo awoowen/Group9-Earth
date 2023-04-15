@@ -367,7 +367,7 @@ public class TestDriver {
     		yesNo = ToScreen.requestString(input, 0);
     		if(yesNo == "y") {
     			temp = activePlayer.getTableu().chooseCard(ToScreen.growthCoord(activePlayer, input));
-    			if(temp.getType() == "Flora" && temp.getCurrGrowth() < temp.getGrowthMax()) {
+    			if(temp.getType().equals("Flora") && temp.getCurrGrowth() < temp.getGrowthMax()) {
     				activePlayer.getTableu().chooseCard(ToScreen.growthCoord(activePlayer, input)).addCurrGrowth(1);
     				growthCounter--;
     			}
