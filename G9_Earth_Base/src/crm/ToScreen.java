@@ -253,7 +253,7 @@ public class ToScreen {
 			return 0;
 		}
 		for(int i = 0; i < 16; i++) {
-			if(p.getTableu().chooseCard(i).getType() == "Flora") {
+			if(p.getTableu().chooseCard(i).getType().equals("Flora")) {
 				plantFlag = true;
 				break;
 			}
