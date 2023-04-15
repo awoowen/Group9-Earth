@@ -4,7 +4,7 @@ public abstract class Card {
 	private String name;		// Name on card; in rulebook: PDF page 4 number 5
 	private CardType type;		// Type of card; in rulebook: PDF page 4
 	private int soilCost;		// How much soil it costs to plant this card.
-	private int basePointValue;	// The number of points this card is worth when planted.
+	private int basePointValue;	// The number of points this card is worth.
 	private int sproutMax;		// Flora: Sprouts provide VP and can be converted to soil: PDF page 7
 	private int currSprouts;	// Flora: Current number of sprouts on card
 	private int growthMax;		// Flora: Growth encompasses trunks and canopies and provide VP: PDF page 8
