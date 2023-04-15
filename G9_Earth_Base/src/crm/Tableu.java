@@ -43,6 +43,10 @@ public class Tableu {
 		return tableu[row][col];
 	}
 	
+	public Card chooseCard(int spot) {
+		return chooseCard((spot - 1) / 4, (spot - 1) % 4);
+	}
+	
 	public int countEmptySprouts() {
 		int sum = 0;
 		for (Card[] r : tableu) {

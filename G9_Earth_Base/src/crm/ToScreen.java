@@ -159,6 +159,18 @@ public class ToScreen {
 		return result;
 	}
 	
+	public static int waterAmt(Player p, int spot, int availableSprouts, Scanner input) {
+		int vacant = p.getTableu().chooseCard(spot).getSproutMax() - p.getTableu().chooseCard(spot).getSproutMax();
+		int max = vacant > availableSprouts ? availableSprouts : vacant;
+		System.out.println("Enter number of sprouts to plant (max of " + max + "): ");
+		int choice = input.nextInt();
+		while (choice > max) {
+			System.out.println("Enter number of sprouts to plant (max of " + max + "): ");
+			choice = input.nextInt();
+		}
+		return choice;
+	}
+	
 	public static int requestInt(Scanner input) {
 		int temp = 0;
 		return temp;

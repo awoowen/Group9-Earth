@@ -316,6 +316,7 @@ public class TestDriver {
     public static void wateringAction(Player activePlayer, Scanner input) {
     	int tempSprouts = 6;
     	int locationToWater;		// 1-16 for spot on tableu to water
+    	int amountToWater;
 
     	//Gain up to 6 sprouts, immediately placing them on any of your flora with empty sprout spaces, then gain 2 soil
     	ToScreen.displayTableu(activePlayer.getTableu());
@@ -336,6 +337,8 @@ public class TestDriver {
     		System.out.println("\nYou must choose a plant card\n");
     		locationToWater = ToScreen.waterCoord(activePlayer, input);
     	}
+    	
+    	amountToWater = ToScreen.waterAmt(activePlayer, locationToWater, tempSprouts, input);
     	
     	
     }
