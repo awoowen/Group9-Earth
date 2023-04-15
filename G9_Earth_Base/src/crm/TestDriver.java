@@ -326,6 +326,11 @@ public class TestDriver {
     	//sprouts can be converted to soil at a ratio of 3 sprouts to 2 soil at any time during the game except while gaining them during the watering action or in the middle of a card's ability
     	//you can repeat the sprout to soil conversion (one way) as many times as you want
     	
+    	// Reset sprout count if not enough vacant spots
+    	int maxEmptySpaces = activePlayer.getTableu().countEmptySprouts();
+    	if (maxEmptySpaces < tempSprouts) tempSprouts = maxEmptySpaces;
+    	
+    	// Select spot to water
     	locationToWater = ToScreen.waterCoord(activePlayer, input);
     	while (!activePlayer.getTableu().chooseCard((locationToWater - 1) / 4, (locationToWater - 1) % 4).getType().equals("Flora")) {
     		System.out.println("\nYou must choose a plant card\n");
