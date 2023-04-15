@@ -3,6 +3,7 @@ package crm;
 import java.util.ArrayList;
 import java.util.Collections;
 import crm.cards.*;
+import crm.cards.ecosystem.GreatBasinDesert;
 
 public class EcoDeck {
     private static ArrayList<Card> ecoDeck;
@@ -13,11 +14,13 @@ public class EcoDeck {
         ecoDeck = new ArrayList<>();
 
         // Add some ecosystem cards
+        ecoDeck.add(new GreatBasinDesert());
+
 
         shuffleDeck();
     }
 
-    public void shuffleDeck()
+    private void shuffleDeck()
     {
         Collections.shuffle(ecoDeck);
     }
@@ -34,21 +37,17 @@ public class EcoDeck {
             // Returns the top card
             return ecoDeck.remove(0);
         }
-        else if(ecoDeck.size() == 0)
-        {
-            int discardSize = discardPile.size();
-            for(int i = 0; i < discardSize; i++)
-            {
-                ecoDeck.add(discardPile.remove(0));
-            }
-            shuffleDeck();
-            return ecoDeck.remove(0);
-        }
         else
         {
             // Hope we don't to this
             return new ErrorCard();
         }
+    }
+
+    // Removes the deck from the game
+    public void discardDeck()
+    {
+        ecoDeck.clear();
     }
 
 
