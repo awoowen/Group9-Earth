@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Player {
 
+	protected String name;
+	
 	protected Tableu playerTableu;
 
 	protected ArrayList<Card> hand;   // indexed from 0 in the code. Indexed from 1 for the view e.g. player enters 1 for first card.
@@ -22,6 +24,7 @@ public class Player {
 	//private boolean yellowAbility;
 
 	public Player(EarthDeck gameDeck) {
+		setName("");
 		playerTableu = new Tableu();
 		hand = new ArrayList<Card>();
 		compost = new ArrayList<Card>();
@@ -39,6 +42,7 @@ public class Player {
 	}
 
 	public Player() {
+		setName("");
 		playerTableu = new Tableu();
 		hand = new ArrayList<Card>();
 		compost = new ArrayList<Card>();
@@ -132,5 +136,13 @@ public class Player {
 	
 	public Card getCardFromHand(int index) {
 		return hand.get(index);
+	}
+	
+	public void setName(String newName) {
+		name = newName;
+	}
+	
+	public String getName() {
+		return name;
 	}
 }

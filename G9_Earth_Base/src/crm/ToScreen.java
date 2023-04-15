@@ -171,13 +171,35 @@ public class ToScreen {
 		return choice;
 	}
 	
-	public static int requestInt(Scanner input) {
+	public static int requestInt(Scanner input, int choice) {
 		int temp = 0;
+		switch(choice) {
+			case 0: {
+				System.out.print("How many cards to draw? (0-4): ");
+				temp = input.nextInt();
+				while(temp < 0 || temp > 4) {
+					System.out.println("You can't draw that amount of cards, please choose again.");
+					System.out.print("How many cards to draw? (0-4): ");
+					temp = input.nextInt();
+				}
+			}
+		}
 		return temp;
 	}
 	
-	public static String requestString(Scanner input) {
+	public static String requestString(Scanner input, int choice) {
 		String temp = "";
+		switch(choice) {
+			case 0: {
+				System.out.print("Do you want to grow your plants? (y/n): ");
+				temp = input.next();
+				while(temp != "y" && temp != "n") {
+					System.out.println("Invalid choice, please choose again.");
+					System.out.print("Do you want to grow your plants? (y/n): ");
+					temp = input.next();
+				}
+			}
+		}
 		return temp;
 	}
 	
@@ -220,5 +242,33 @@ public class ToScreen {
 
 	public static void cannotPlantEvent() {
 		System.out.print("Cannot plant an Event card. Choose a Flora or Terrain card: ");
+	}
+	
+	public static int growthCoord(Player p, Scanner input) {
+		int temp;
+		Boolean plantFlag = false;
+		displayTableu(p.getTableu());
+		if(p.getTableu().isEmpty()) {
+			System.out.println("You don't have any plants to grow.");
+			return 0;
+		}
+		for(int i = 0; i < 16; i++) {
+			if(p.getTableu().chooseCard(i).getType() == "Flora") {
+				plantFlag = true;
+				break;
+			}
+		}
+		if(plantFlag == false) {
+			System.out.println("You don't have any palnts to grow.");
+			return 0;
+		}
+		System.out.print("Choose a plant to grow (1-16): ");
+		temp = input.nextInt();
+		while(temp < 1 || temp > 16) {
+			System.out.println("Invalid option, please choose a new plant");
+			System.out.print("Choose a plant to grow (1-16): ");
+			temp = input.nextInt();
+		}
+		return temp;
 	}
 }
