@@ -147,6 +147,30 @@ public class ToScreen {
 		return result;
 	} 
 	
+	//Prompt player to enter int 1-16 for choosing planting location
+	public static int waterCoord(Player p, Scanner input) {
+		displayTableu(p.getTableu());
+		System.out.println("\nEnter a number to water that plant (1-16): ");
+		int result = input.nextInt();
+		while (result < 1 || result > 16) {
+			System.out.println("\nEnter a number to water that plant (1-16): ");
+			result = input.nextInt();
+		}
+		return result;
+	}
+	
+	public static int waterAmt(Player p, int spot, int availableSprouts, Scanner input) {
+		int vacant = p.getTableu().chooseCard(spot).getSproutMax() - p.getTableu().chooseCard(spot).getSproutMax();
+		int max = vacant > availableSprouts ? availableSprouts : vacant;
+		System.out.println("Enter number of sprouts to plant (max of " + max + "): ");
+		int choice = input.nextInt();
+		while (choice > max) {
+			System.out.println("Enter number of sprouts to plant (max of " + max + "): ");
+			choice = input.nextInt();
+		}
+		return choice;
+	}
+	
 	public static int requestInt(Scanner input) {
 		int temp = 0;
 		return temp;

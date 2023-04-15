@@ -313,8 +313,10 @@ public class TestDriver {
     	//Finally, all players will activate the red and multicolored abilities on their cards
     }
     
-    public static void wateringAction(Player activePlayer) {
+    public static void wateringAction(Player activePlayer, Scanner input) {
     	int tempSprouts = 6;
+    	int locationToWater;		// 1-16 for spot on tableu to water
+    	int amountToWater;
 
     	//Gain up to 6 sprouts, immediately placing them on any of your flora with empty sprout spaces, then gain 2 soil
     	ToScreen.displayTableu(activePlayer.getTableu());
@@ -324,6 +326,26 @@ public class TestDriver {
     	//you will score 1 VP per sprout on your tableau at the end of the game
     	//sprouts can be converted to soil at a ratio of 3 sprouts to 2 soil at any time during the game except while gaining them during the watering action or in the middle of a card's ability
     	//you can repeat the sprout to soil conversion (one way) as many times as you want
+    	
+    	// Reset sprout count if not enough vacant spots
+    	int maxEmptySpaces = activePlayer.getTableu().countEmptySprouts();
+    	if (maxEmptySpaces < tempSprouts) tempSprouts = maxEmptySpaces;
+    	
+    	while (tempSprouts > 0) {
+    		System.out.println("Number of sprouts to grow: " + tempSprouts);
+    		// Select spot to water
+    		locationToWater = ToScreen.waterCoord(activePlayer, input);
+    		while (!activePlayer.getTableu().chooseCard((locationToWater - 1) / 4, (locationToWater - 1) % 4).getType().equals("Flora")) {
+    			System.out.println("\nYou must choose a plant card\n");
+    			locationToWater = ToScreen.waterCoord(activePlayer, input);
+    		}
+    	
+    		amountToWater = ToScreen.waterAmt(activePlayer, locationToWater, tempSprouts, input);
+    	
+    		activePlayer.getTableu().chooseCard(locationToWater).addCurrSprouts(amountToWater);
+    	
+    		tempSprouts -= amountToWater;
+    	}
     }
     
     public static void growingAction(Player activePlayer) {

@@ -42,4 +42,18 @@ public class Tableu {
 	public Card chooseCard(int row, int col) {
 		return tableu[row][col];
 	}
+	
+	public Card chooseCard(int spot) {
+		return chooseCard((spot - 1) / 4, (spot - 1) % 4);
+	}
+	
+	public int countEmptySprouts() {
+		int sum = 0;
+		for (Card[] r : tableu) {
+			for (Card c : r) {
+				sum += (c.getSproutMax() - c.getCurrSprouts());
+			}
+		}
+		return sum;
+	}
 }
